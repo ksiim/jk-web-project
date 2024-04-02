@@ -8,36 +8,39 @@
 <body>
     <header>
         <nav class='header-nav'>
-            <a>
-                <img src="{% static 'img/logo.png' %}" alt="logo" class="logo">
+            <a class='logo'>
+                <img src="{% static 'img/logo.png' %}" alt="logo">
             </a>
-            <ul class='nav-btn-list'>
-                <li class='btn'>
+            <div class="navigation">
+                <div class='btn'>
                     <img src="{% static 'img/users.svg' %}" alt="Пользователи" class="nav-icon">
                     <a href="#">
-                        Пользователи
+                        <span class='btn-nav-text'>Пользователи</span>
                     </a>
-                </li>
-                <li class='btn'>
+                </div>
+                <div class='btn'>
                     <img src="{% static 'img/magicpen.svg' %}" alt="Добавить проект" class="nav-icon">
                     <a href="#">
-                        Добавить проект
+                        <span class='btn-nav-text'>Добавить проект</span>
                     </a>
-                </li>
-                <li class='btn'>
+                </div>
+                <div class='btn'>
                     <img src="{% static 'img/notification.svg' %}" alt="Уведомления" class="nav-icon">
                     <a href="#">
-                        Уведомления
+                        <span class='btn-nav-text'>Уведомления</span>
                     </a>
-                </li>
-                <li class='btn'>
+                </div>
+                <div class='btn'>
                     <img src="{% static 'img/profile-circle.svg' %}" alt="Регистрация" class="nav-icon">
                     <a href="#">
-                        Регистрация/Вход
+                        <span class='btn-nav-text'>Регистрация/Вход</span>
                     </a>
-                </li>
-            </ul>
+                </div>
+            </div>
         </nav>
+        <div class='hero'>
+            <p class='header-title'>ВАШ ПУТЬ К <span class='hero-span'>ВДОХНОВЕНИЮ</span> НАЧИНАЕТСЯ ЗДЕСЬ</p>
+        </div>
     </header>
 </body>
 </html>

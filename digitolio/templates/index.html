@@ -2,14 +2,19 @@
 {% load static %}
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Projects</title>
+    {% comment %} <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> {% endcomment %}
+    {% comment %} <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"> {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/header_style.css' %}">
 </head>
 <body>
     <header>
         <nav class='header-nav'>
-            <a class='logo'>
-                <img src="{% static 'img/logo.png' %}" alt="logo">
+            <a class='logo' href="#">
+                <img src="{% static 'img/logo.png' %}" alt="logo" class="header-logo">
             </a>
             <div class="navigation">
                 <div class='btn'>
@@ -42,5 +47,28 @@
             <p class='header-title'>ВАШ ПУТЬ К <span class='hero-span'>ВДОХНОВЕНИЮ</span> НАЧИНАЕТСЯ ЗДЕСЬ</p>
         </div>
     </header>
+    <main>
+        <div class='sorting-bar'>
+            dcssdcsadcasdcasd
+        </div>
+        <div class='search-projects-container'>
+            <div class="wrap">
+                <div class="search">
+                   <input type="text" class="searchTerm" placeholder="Search...">
+                   <button type="submit" class="searchButton">
+                     <i class="fa fa-search"></i>
+                  </button>
+            </div>
+            {% comment %} <div class='search-container'>
+                <input type="search" placeholder="Поиск по сайту"> 
+                <button type="submit">
+                    <img src="{% static 'img/search.svg' %}" alt="Поиск" class="search-icon">
+                </button>
+            </div>
+            <div class='projects-list'>
+                xcvxvc
+            </div> {% endcomment %}
+        </div>
+    </main>
 </body>
 </html>

@@ -4,73 +4,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Projects</title>
+    <title>Digitolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    {% comment %} <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> {% endcomment %}
-    {% comment %} <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"> {% endcomment %}
-    <link rel="stylesheet" href="{% static 'css/header_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
 </head>
 <body>
-    <header class='container'>
-        <nav class='row header-nav'>
-            <a class='logo' href="#">
-                <img src="{% static 'img/logo.png' %}" alt="logo" class="header-logo">
+    <header>
+        <nav class="navbar">
+          <div class="container p-4">
+            <a class="navbar-brand" href="#">
+              <img src="{% static "/img/logo.png" %}"
+                   class="d-inline-block align-top h-60"
+                   alt="">
             </a>
-            <div class="navigation">
-                <div class='btn'>
-                    <img src="{% static 'img/users.svg' %}" alt="Пользователи" class="nav-icon">
-                    <a href="#">
-                        <span class='btn-nav-text'>Пользователи</span>
+            <ul class="nav nav-pills">
+                <li class="nav-item btn m-1 bg-info">
+                    <a class="nav-link" style='color: #333;'>
+                        <img src="{% static 'img/users.svg' %}" alt="Пользователи" class="mr-2">
+                        <span class=''>Пользователи</span>
                     </a>
-                </div>
-                <div class='btn'>
-                    <img src="{% static 'img/magicpen.svg' %}" alt="Добавить проект" class="nav-icon">
-                    <a href="#">
-                        <span class='btn-nav-text'>Добавить проект</span>
+                </li>
+                <li class="nav-item btn m-1 bg-info">
+                    <a class="nav-link" style="color: #333;">
+                        <img src="{% static 'img/magicpen.svg' %}" alt="Добавить проект" class="mr-2">
+                        <span class=''>Добавить проект</span>
                     </a>
-                </div>
-                <div class='btn'>
-                    <img src="{% static 'img/notification.svg' %}" alt="Уведомления" class="nav-icon">
-                    <a href="#">
-                        <span class='btn-nav-text'>Уведомления</span>
+                </li>
+                <li class="nav-item btn m-1 bg-info">
+                    <a class="nav-link" style='color: #333;'>
+                        <img src="{% static 'img/notification.svg' %}" alt="Уведомления" class="mr-2">
+                        <span class=''>Уведомления</span>
                     </a>
-                </div>
-                <div class='btn'>
-                    <img src="{% static 'img/profile-circle.svg' %}" alt="Регистрация" class="nav-icon">
-                    <a href="#">
-                        <span class='btn-nav-text'>Регистрация/Вход</span>
+                </li>
+                <li class="nav-item btn m-1 bg-info">
+                    <a class="nav-link" style='color: #333;'>
+                        <img src="{% static 'img/profile-circle.svg' %}" alt="Регистрация" class="mr-2">
+                        <span class=''>Регистрация/Вход</span>
                     </a>
-                </div>
-            </div>
+                </li>
+            </ul>
+          </div>
         </nav>
-        <div class='hero'>
-            <p class='header-title'>ВАШ ПУТЬ К <span class='hero-span'>ВДОХНОВЕНИЮ</span> НАЧИНАЕТСЯ ЗДЕСЬ</p>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <h1 class="my-5">ВАШ ПУТЬ К ВДОХНОВЕНИЮ НАЧИНАЕТСЯ ЗДЕСЬ</h1>
+                </div>
+            </div>
         </div>
-    </header>
+      </header>
     <main class="container">
-        <div class='col-md-2 sorting-bar'>
-            dcssdcsadcasdcasd
-        </div>
-        <div class='search-projects-container'>
-            <div class="wrap">
-                <div class="search">
-                   <input type="text" class="searchTerm" placeholder="Search...">
-                   <button type="submit" class="searchButton">
-                     <i class="fa fa-search"></i>
-                  </button>
+        <div class='row'>
+            <div class='col-md-2 col-lg-2'>
+                <div class="card bg-info p-0 m-0 text-bg-light ">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Фильтры</h5>
+                        <form>
+                            <div class="form-group mb-3">
+                                <label>Сортировать по</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="filter3" id="option1" value="option1">
+                                    <label class="form-check-label" for="option1">Популярное</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="filter3" id="option2" value="option2">
+                                    <label class="form-check-label" for="option2">Новое</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="filter3" id="option3" value="option3">
+                                    <label class="form-check-label" for="option3">Выбор пользователей</label>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="filter1">Категория</label>
+                                <select class="form-control" id="filter1">
+                                    <option>Выберите опцию</option>
+                                    <option>Опция 1</option>
+                                    <option>Опция 2</option>
+                                    <option>Опция 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="filter2">Язык</label>
+                                <select class="form-control" id="filter2">
+                                    <option>Выберите опцию</option>
+                                    <option>Опция 1</option>
+                                    <option>Опция 2</option>
+                                    <option>Опция 3</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Применить изменения</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            {% comment %} <div class='search-container'>
-                <input type="search" placeholder="Поиск по сайту"> 
-                <button type="submit">
-                    <img src="{% static 'img/search.svg' %}" alt="Поиск" class="search-icon">
-                </button>
+            <div class='col-md-10 col-lg-10 ps-4'>
+                <div class="container mb-3">
+                    <div class="row">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Найти проект по названию или автору" aria-label="Поиск проектов" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary justify-content-center align-items-center" type="button" id="button-addon2">
+                                <img src="{% static 'img/search.svg' %}" alt="Поиск" class='d-block'>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-3">
+                        <div class="col mb-4">
+                            <div class="card h-100 rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Проект 1</h5>
+                                    <p class="card-text">Описание проекта 1.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="card h-100 rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Проект 2</h5>
+                                    <p class="card-text">Описание проекта 2.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="card h-100 rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Проект 3</h5>
+                                    <p class="card-text">Описание проекта 3.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-cols-1 row-cols-md-3">
+                        <div class="col mb-4">
+                            <div class="card h-100 rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Проект 1</h5>
+                                    <p class="card-text">Описание проекта 1.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="card h-100 rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Проект 2</h5>
+                                    <p class="card-text">Описание проекта 2.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="card h-100 rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Проект 3</h5>
+                                    <p class="card-text">Описание проекта 3.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-cols-1 row-cols-md-3">
+                        <div class="col mb-4">
+                            <div class="card h-100 rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Проект 1</h5>
+                                    <p class="card-text">Описание проекта 1.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="card h-100 rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Проект 2</h5>
+                                    <p class="card-text">Описание проекта 2.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="card h-100 rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Проект 3</h5>
+                                    <p class="card-text">Описание проекта 3.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class='projects-list'>
-                xcvxvc
-            </div> {% endcomment %}
         </div>
     </main>
+    <footer class='container-lg mt-5'>
+        <div class='row'>
+            <div class='col-md-6 m-auto '>
+                <div class='container'>
+                    <p class='text-center'>
+                        Ребята, мне тяжело дается верстка
+                        <br>Я страюсь, отвечаю
+                    </p>
+                </div>
+            </div>
+            <div class='col-md-6'>
+                <div class='d-flex justify-content-center align-items-center flex-column'>
+                    <p class='mb-3'>Made by JK.Web</p>
+                    <div class='container justify-content-center align-items-center text-center'>
+                        <img src="{% static 'img/logo_JK.png' %}" alt="Логотип" class=''>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row mt-1'>
+            <p>© 2024 JK.Web. Все права защищены.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </html>

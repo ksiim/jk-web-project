@@ -3,7 +3,7 @@ from .models import Project
 
 def index(request):
     projects = Project.objects.all()
-    return render(request, 'users.html', context={'projects': projects})
+    return render(request, 'index.html', context={'projects': projects})
 
 def create_project(request):
     if request.method == 'POST':

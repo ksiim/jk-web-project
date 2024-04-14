@@ -1,0 +1,22 @@
+{% load static %}
+<div class='container-lg mt-5'>
+    <div class='row'>
+        <div class='col-md-6 m-auto '>
+            <div class='container'>
+                <p class='text-center'>
+                    Ребята, мне тяжело дается верстка
+                    <br>Я страюсь, отвечаю
+                </p>
+            </div>
+        </div>
+        <div class='col-md-6'>
+            <div class='d-flex justify-content-center align-items-center flex-column'>
+                <p class='mb-3'>Made by JK.Web</p>
+                <div class='container justify-content-center align-items-center text-center'>
+                    <img src="{% static 'img/logo_JK.png' %}" alt="Логотип" class=''>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'includes/footer_base.html' %}
+</div>

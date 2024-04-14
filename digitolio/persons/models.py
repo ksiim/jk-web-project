@@ -5,6 +5,8 @@ class Person(AbstractUser):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     password = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    specialization = models.TextField(null=True, blank=True)
     
     groups = models.ManyToManyField(
         'auth.Group',

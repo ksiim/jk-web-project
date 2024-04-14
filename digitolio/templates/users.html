@@ -4,47 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digitolio</title>
+    <title>Persons</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/test.css' %}">
 </head>
 <body>
     <header>
-        <nav class="navbar">
-          <div class="container p-4">
-            <a class="navbar-brand" href="#">
-              <img src="{% static "/img/logo.png" %}"
-                   class="d-inline-block align-top h-60"
-                   alt="">
-            </a>
-            <ul class="nav nav-pills">
-                <li class="nav-item btn m-1 bg-info">
-                    <a class="nav-link" style='color: #333;'>
-                        <img src="{% static 'img/users.svg' %}" alt="Пользователи" class="mr-2">
-                        <span class=''>Пользователи</span>
-                    </a>
-                </li>
-                <li class="nav-item btn m-1 bg-info">
-                    <a class="nav-link" style="color: #333;">
-                        <img src="{% static 'img/magicpen.svg' %}" alt="Добавить проект" class="mr-2">
-                        <span class=''>Добавить проект</span>
-                    </a>
-                </li>
-                <li class="nav-item btn m-1 bg-info">
-                    <a class="nav-link" style='color: #333;'>
-                        <img src="{% static 'img/notification.svg' %}" alt="Уведомления" class="mr-2">
-                        <span class=''>Уведомления</span>
-                    </a>
-                </li>
-                <li class="nav-item btn m-1 bg-info">
-                    <a class="nav-link" style='color: #333;'>
-                        <img src="{% static 'img/profile-circle.svg' %}" alt="Регистрация" class="mr-2">
-                        <span class=''>Регистрация/Вход</span>
-                    </a>
-                </li>
-            </ul>
-          </div>
-        </nav>
+        {% include 'includes/header_nav.html' %}
       </header>
     <main class="container">
         <div class='row'>
@@ -103,6 +69,7 @@
                     </div>
                 </div>
                 <div class="container">
+                    {% for data in persons_projects_data %}
                     <div class="row row-cols-1 row-cols-md-4">
                         <div class="col mb-3">
                             <div class='container user-card'>
@@ -111,130 +78,25 @@
                                         <img src="" alt="Аватар" class="rounded-circle">
                                     </div>
                                     <div class="col-8">
-                                        <div class='row mb-1'><h5>Имя пользователя</h5></div>
-                                        <div class='row mb-0'><p class='mb-0 '>Описание</p></div>
-                                        <div class='row mb-0'><p class='mb-0 '>Специализация</p></div>
-                                        <div class='row'><p class='mb-0 '>+13R</p></div>
+                                        <div class='row mb-1'><h5>{{ data.person.name }}</h5></div>
+                                        <div class='row mb-0'><p class='mb-0 '>{{ data.person.description }}</p></div>
+                                        <div class='row mb-0'><p class='mb-0 '>{{ data.person.specialization }}</p></div>
+                                        <div class='row'><p class='mb-0 '>13R</p></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col mb-3">
-                            <div class="card h-100 rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">Проект 2</h5>
-                                    <p class="card-text">Описание проекта 2.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <div class="card h-100 rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">Проект 3</h5>
-                                    <p class="card-text">Описание проекта 3.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <div class="card h-100 rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">Проект 3</h5>
-                                    <p class="card-text">Описание проекта 3.</p>
-                                </div>
-                            </div>
-                        </div>
+                        {% for project in data.projects %}
+                        {% include 'includes/project.html' %}
+                        {% endfor %}
                     </div>
-
-                    <div class="row row-cols-1 row-cols-md-4">
-                        <div class="col mb-3">
-                            <div class='container user-card'>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <img src="" alt="Аватар" class="rounded-circle">
-                                    </div>
-                                    <div class="col-8">
-                                        <div class='row mb-1'><h5>Имя пользователя</h5></div>
-                                        <div class='row mb-0'><p class='mb-0 '>Описание</p></div>
-                                        <div class='row mb-0'><p class='mb-0 '>Специализация</p></div>
-                                        <div class='row'><p class='mb-0 '>+13R</p></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <div class="card h-100 rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">Проект 2</h5>
-                                    <p class="card-text">Описание проекта 2.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <div class="card h-100 rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">Проект 3</h5>
-                                    <p class="card-text">Описание проекта 3.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <div class="card h-100 rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">Проект 3</h5>
-                                    <p class="card-text">Описание проекта 3.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row row-cols-1 row-cols-md-4">
-                        <div class="col mb-3">
-                            <div class='container user-card'>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <img src="" alt="Аватар" class="rounded-circle">
-                                    </div>
-                                    <div class="col-8">
-                                        <div class='row mb-1'><h5>Имя пользователя</h5></div>
-                                        <div class='row mb-0'><p class='mb-0 '>Описание</p></div>
-                                        <div class='row mb-0'><p class='mb-0 '>Специализация</p></div>
-                                        <div class='row'><p class='mb-0 '>+13R</p></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <div class="card h-100 rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">Проект 2</h5>
-                                    <p class="card-text">Описание проекта 2.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <div class="card h-100 rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">Проект 3</h5>
-                                    <p class="card-text">Описание проекта 3.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <div class="card h-100 rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">Проект 3</h5>
-                                    <p class="card-text">Описание проекта 3.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </main>
     <footer class='container-lg mt-5'>
-        <div class='row mt-1'>
-            <p>© 2024 JK.Web. Все права защищены.</p>
-        </div>
+        {% include 'includes/footer_base.html' %}
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

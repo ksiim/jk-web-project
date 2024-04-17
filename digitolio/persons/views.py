@@ -1,6 +1,9 @@
-from django.shortcuts import render
-from .models import Person
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from .models import CustomUserCreationForm, Person
 from django.http import HttpResponseNotFound
+from django.contrib.auth import login
+from django.views.generic.edit import CreateView
 
 
 def index(request):
@@ -9,20 +12,21 @@ def index(request):
     for person in persons:
         projects = person.projects.all()[:3]
         persons_projects_data.append({'person': person, 'projects': projects})
-    print(persons_projects_data)
     return render(request, 'users.html', context={'persons_projects_data': persons_projects_data})
     # return render(request, 'login.html')
 
+# def register(request):
+#     if request.method == 'POST':
+#         form = CustomUserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             return redirect('/persons')
+#     else:
+#         form = CustomUserCreationForm()
+#     return render(request, 'registration.html', {'form': form})
 
-def register_person(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        person = Person.objects.create(
-            name=name,
-            email=email,
-            password=password
-        )
-        return render(request, 'person.html', context={'person': person})
-    return render(request, 'register_person.html')
+class SignUp(CreateView):
+    form_class = CustomUserCreationForm
+    success_url = reverse_lazy('projects:index')
+    template_name = 'registration.html'

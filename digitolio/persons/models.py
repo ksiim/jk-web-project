@@ -14,7 +14,7 @@ PROGRAMMING_LANGUAGES = [
 ]
 
 class Person(AbstractUser):
-    name = models.CharField(max_length=255)
+    # name = models.CharField(max_length=255)
     email = models.EmailField()
     password = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
@@ -42,7 +42,7 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = Person
         fields = [
-            'name', 'email', 'password1',
+            'username', 'email', 'password1',
             'password2', 'description',
             'experience', 'specialization',
             'programming_language'

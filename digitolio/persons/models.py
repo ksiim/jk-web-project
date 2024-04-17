@@ -1,12 +1,22 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth.forms import UserCreationForm
+
+PROGRAMMING_LANGUAGES = [
+    ("python", "Python"),
+    ("java", "Java"),
+    ("cpp", "C++"),
+    ("csharp", "C#")
+]
 
 class Person(AbstractUser):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     password = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    experience = models.IntegerField(null=True, blank=True)
     specialization = models.TextField(null=True, blank=True)
+    programming_language = models.TextField(choices=PROGRAMMING_LANGUAGES, null=True, blank=True)
     
     groups = models.ManyToManyField(
         'auth.Group',
@@ -23,3 +33,13 @@ class Person(AbstractUser):
         help_text='Specific permissions for this person.',
         verbose_name='user permissions',
     )
+    
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = Person
+        fields = [
+            'name', 'email', 'password1',
+            'password2', 'description',
+            'experience', 'specialization',
+            'programming_language'
+        ]

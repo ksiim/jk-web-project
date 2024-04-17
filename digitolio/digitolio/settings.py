@@ -8,6 +8,7 @@ SECRET_KEY = 'django-insecure-)2o)^v%i=y(%klyrjcw(ft^2j16=7w!l#3udx7f6mybd)np+p%
 
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
@@ -19,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects.apps.ProjectsConfig',
     'persons.apps.PersonsConfig',
+    # 'persons',
 ]
 
 MIDDLEWARE = [
@@ -93,4 +95,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "projects:index"
 
 
-# AUTH_USER_MODEL = 'persons.Person'
+AUTH_USER_MODEL = 'persons.Person'

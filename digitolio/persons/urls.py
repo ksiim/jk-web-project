@@ -11,7 +11,7 @@ app_name = 'persons'
 urlpatterns = [
     path('', views.index, name='index'),
     path('logout/', LogoutView.as_view(template_name='logged_out.html'), name='logout'),
-    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('login/', views.LogIn.as_view(), name='login'),
     path('password_change/', PasswordChangeView.as_view(template_name='password_change_form.html'), name='password_change'),
     path('password_change/done/', PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),
     path('password_reset/', PasswordResetView.as_view(template_name='password_reset_form.html'), name='password_reset'),

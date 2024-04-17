@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 User = get_user_model()
@@ -46,4 +46,11 @@ class CustomUserCreationForm(UserCreationForm):
             'password2', 'description',
             'experience', 'specialization',
             'programming_language'
+        ]
+        
+class CustomUserLogInForm(AuthenticationForm):
+    class Meta:
+        model = Person
+        fields = [
+            "username", "password"
         ]

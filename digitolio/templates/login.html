@@ -25,7 +25,15 @@
                     <h3>Вход</h3>
                 </div>
                 <div class="card-body">
-                    <form class='text-center'>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset>
+                            <legend>Register here</legend>
+                            {{form.as_p}}
+                        </fieldset>
+                        <button class="btn btn-primary" type="submit">Sign Up</button>
+                    </form>
+                    {% comment %} <form class='text-center'>
                         <div class="form-group">
                             <input type="text" class="form-control" id="username" placeholder="Имя пользователя">
                         </div>
@@ -33,7 +41,7 @@
                             <input type="password" class="form-control" id="password" placeholder="Пароль">
                         </div>
                         <button type="submit" class="btn btn-primary ">Войти</button>
-                    </form>
+                    </form> {% endcomment %}
                 </div>
             </div>
         </div>

@@ -25,7 +25,9 @@
                     <h3>Регистрация</h3>
                 </div>
                 <div class="card-body">
-                    <form method='post' class='text-center'>
+                    
+                    {% comment %} <form method='post' enctype="multipart/form-data" class='text-center'>
+                        {% csrf_token %}
                         <div class="form-group">
                             <input type="text" class="form-control" id="username" placeholder="Введите имя пользователя">
                         </div>
@@ -39,7 +41,7 @@
                             <input type="password" class="form-control" id="password" placeholder="Повторите пароль">
                         </div>
                         <button type="submit" class="btn btn-primary ">Зарегистрироваться</button>
-                    </form>
+                    </form> {% endcomment %}
                 </div>
             </div>
         </div>

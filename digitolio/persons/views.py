@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from .models import CustomUserCreationForm, Person, CustomUserLogInForm
+from .models import CustomUserCreationForm, Person
 from django.http import HttpResponseNotFound
 from django.contrib.auth import login
 from django.views.generic.edit import CreateView
@@ -30,8 +30,3 @@ class SignUp(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('persons:index')
     template_name = 'registration.html'
-    
-class LogIn(CreateView):
-    form_class = CustomUserLogInForm
-    success_url = reverse_lazy('persons:index')
-    template_name = 'login.html'

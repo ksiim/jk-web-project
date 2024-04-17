@@ -1,8 +1,7 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.urls import reverse_lazy
-from .models import CustomUserCreationForm, Person
-from django.http import HttpResponseNotFound
-from django.contrib.auth import login
+from .models import Person
+from .forms import CustomUserCreationForm
 from django.views.generic.edit import CreateView
 
 

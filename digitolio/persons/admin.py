@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Person
+from django.contrib.auth.admin import UserAdmin
+from .forms import CustomUserCreationForm
+from .models import *
 
-# Register your models here.
-admin.site.register(Person)
+class PersonAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    model = Person
+
+admin.site.register(Person, PersonAdmin)

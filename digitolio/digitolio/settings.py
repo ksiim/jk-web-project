@@ -90,7 +90,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = "projects:index"
+LOGIN_REDIRECT_URL = "persons:index"
 
-
-# AUTH_USER_MODEL = 'persons.Person'
+AUTH_USER_MODEL = 'persons.Person'

@@ -1,10 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth import get_user_model
 from django.db import models
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
-
-User = get_user_model()
 
 PROGRAMMING_LANGUAGES = [
     ("python", "Python"),
@@ -37,13 +32,3 @@ class Person(AbstractUser):
         help_text='Specific permissions for this person.',
         verbose_name='user permissions',
     )
-    
-class CustomUserCreationForm(UserCreationForm):
-    class Meta:
-        model = Person
-        fields = [
-            'username', 'email', 'password1',
-            'password2', 'description',
-            'experience', 'specialization',
-            'programming_language'
-        ]

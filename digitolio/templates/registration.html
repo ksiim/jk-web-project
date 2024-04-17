@@ -26,6 +26,7 @@
                 </div>
                 <div class="card-body">
                     <form method='post' class='text-center'>
+                        {% csrf_token %}
                         <div class="form-group">
                             <input type="text" class="form-control" id="username" placeholder="Введите имя пользователя">
                         </div>

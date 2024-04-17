@@ -9,7 +9,7 @@ from . import views
 app_name = 'persons'
 
 urlpatterns = [
-    path('', views.index, name='persons_index'),
+    path('', views.index, name='index'),
     path('logout/', LogoutView.as_view(template_name='logged_out.html'), name='logout'),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('password_change/', PasswordChangeView.as_view(template_name='password_change_form.html'), name='password_change'),

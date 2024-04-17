@@ -28,5 +28,6 @@ def index(request):
 
 class SignUp(CreateView):
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('persons:index')
+    success_url = reverse_lazy('persons:persons_index')
+    # print(success_url)
     template_name = 'registration.html'

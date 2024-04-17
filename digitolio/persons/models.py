@@ -47,10 +47,3 @@ class CustomUserCreationForm(UserCreationForm):
             'experience', 'specialization',
             'programming_language'
         ]
-        
-class CustomUserLogInForm(AuthenticationForm):
-    class Meta:
-        model = Person
-        fields = [
-            "username", "password"
-        ]

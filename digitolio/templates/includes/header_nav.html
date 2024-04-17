@@ -7,11 +7,13 @@
              alt="">
       </a>
       <ul class="nav nav-pills">
-          <li class="nav-item btn m-1 bg-info">
+          <li>
+            <button class="nav-item btn btn-sm m-1 bg-info">
               <a class="nav-link" style='color: #333;' href='{% url 'persons:persons_index' %}'>
                   <img src="{% static 'img/users.svg' %}" alt="Пользователи" class="mr-2">
                   <span class=''>Пользователи</span>
               </a>
+            </button>
           </li>
           <li class="nav-item btn m-1 bg-info">
               <a class="nav-link" style="color: #333;">

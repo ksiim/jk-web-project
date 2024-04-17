@@ -11,6 +11,7 @@ def index(request):
         persons_projects_data.append({'person': person, 'projects': projects})
     print(persons_projects_data)
     return render(request, 'users.html', context={'persons_projects_data': persons_projects_data})
+    # return render(request, 'login.html')
 
 
 def register_person(request):

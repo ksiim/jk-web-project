@@ -15,8 +15,8 @@
     </header>
     <main class="container">
         <div class='row'>
-            <div class='col-md-2 col-lg-2'>
-                <div class="card bg-info p-0 m-0 text-bg-light ">
+            <div class='col-md-2 col-lg-2 rounded-pill'>
+                <div class="card bg-info p-0 m-0 text-bg-light" style='border-radius: 1rem;'>
                     <div class="card-body">
                         <h5 class="card-title mb-4">Фильтры</h5>
                         <form>
@@ -61,9 +61,9 @@
             <div class='col-md-10 col-lg-10 ps-4'>
                 <div class="container mb-3">
                     <div class="row">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Найти проект по названию или автору" aria-label="Поиск проектов" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary justify-content-center align-items-center" type="button" id="button-addon2">
+                        <div class="input-group" >
+                            <input style=' border-radius: 1rem;' type="text" class="form-control" placeholder="Найти проект по названию или автору" aria-label="Поиск проектов" aria-describedby="button-addon2 ">
+                            <button style='border-radius: 1rem;' class="btn btn-outline-secondary justify-content-center align-items-center" type="button" id="button-addon2">
                                 <img src="{% static 'img/search.svg' %}" alt="Поиск" class='d-block'>
                             </button>
                         </div>
@@ -80,7 +80,8 @@
         </div>
     </main>
     <footer>
-        {% include 'includes/footer_for_index.html' %}
+        {% include 'includes/hero_footer.html' %}
+        {% include 'includes/footer_base.html' %}
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

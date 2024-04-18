@@ -13,14 +13,13 @@
     <div class="row justify-content-center align-items-center ">
         <div class="col-md-6">
             <div class='container text-center mb-4'>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{% url 'projects:index' %}">
                     <img src="{% static "/img/logo.png" %}"
                          class=""
                          alt="">
                   </a>
             </div>
-
-            <div class="card">
+            <div class="card" style="border-radius: 4rem;">
                 <div class="card-header pt-3 m-auto bg-body" style="background: transparent;">
                     <h3>Вход</h3>
                 </div>
@@ -28,27 +27,39 @@
                     <form method="POST">
                         {% csrf_token %}
                         <fieldset>
-                            <legend>Register here</legend>
-                            {{form.as_p}}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" class="form-control w-100 " placeholder="{{ field.label }}" value="{{ field.value|default:'' }}" style="border-radius: 4rem;">
+                                    {% if field.errors %}
+                                        <div class="invalid-feedback" style="display: block; color: blue " data-toggle="tooltip" title="{{ field.errors.as_text }}">
+                                            {{ field.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
                         </fieldset>
-                        <button class="btn btn-primary" type="submit">Sign Up</button>
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger" style="border-radius: 4rem;" role="alert">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                        <div class="d-flex justify-content-center m-3">
+                            <button class="btn btn-primary" type="submit" style="border-radius: 4rem; width: 20vh;">Войти</button>
+                        </div>
                     </form>
-                    {% comment %} <form class='text-center'>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="username" placeholder="Имя пользователя">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="password" placeholder="Пароль">
-                        </div>
-                        <button type="submit" class="btn btn-primary ">Войти</button>
-                    </form> {% endcomment %}
                 </div>
+            </div>
+            <script>
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+            </script>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Подключение Bootstrap JavaScript (Popper.js и jQuery) и Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

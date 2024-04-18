@@ -7,30 +7,34 @@
              alt="">
       </a>
       <ul class="nav nav-pills">
-          <li>
-            <button class="nav-item btn btn-sm m-1 bg-info">
-              <a class="nav-link" style='color: #333;' href='{% url 'persons:index' %}'>
-                  <img src="{% static 'img/users.svg' %}" alt="Пользователи" class="mr-2">
-                  <span class=''>Пользователи</span>
-              </a>
-            </button>
+          <li class="nav-item btn m-1 bg-info rounded-pill">
+            <a class="text-decoration-none " style='color: #333;' href='{% url 'persons:index' %}'>
+                <img src="{% static 'img/users.svg' %}" alt="Пользователи" class="mr-2">
+                <span class=''>Пользователи</span>
+            </a>
           </li>
-          <li class="nav-item btn m-1 bg-info">
-              <a class="nav-link" style="color: #333;">
+          <li class="nav-item btn m-1 bg-info rounded-pill">
+              <a class="text-decoration-none " style="color: #333;">
                   <img src="{% static 'img/magicpen.svg' %}" alt="Добавить проект" class="mr-2">
                   <span class=''>Добавить проект</span>
               </a>
           </li>
-          <li class="nav-item btn m-1 bg-info">
-              <a class="nav-link" style='color: #333;'>
+          <li class="nav-item btn m-1 bg-info rounded-pill">
+              <a class="text-decoration-none " style='color: #333;'>
                   <img src="{% static 'img/notification.svg' %}" alt="Уведомления" class="mr-2">
                   <span class=''>Уведомления</span>
               </a>
           </li>
-          <li class="nav-item btn m-1 bg-info">
-              <a class="nav-link" style='color: #333;'>
+          <li class="nav-item btn m-1 bg-info rounded-pill">
+              <a class="text-decoration-none " style='color: #333;'>
                   <img src="{% static 'img/profile-circle.svg' %}" alt="Регистрация" class="mr-2">
-                  <span class=''>Регистрация/Вход</span>
+                  <span class=''>
+                    {% if user.is_authenticated %}
+                        <a>Профиль</a>
+                    {% else %}
+                        <a href=>Регистрация/Вход</a>
+                    {% endif %}
+                  </span>
               </a>
           </li>
       </ul>

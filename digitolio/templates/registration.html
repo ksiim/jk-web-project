@@ -12,14 +12,13 @@
     <div class="row justify-content-center align-items-center ">
         <div class="col-md-6">
             <div class='container text-center mb-4'>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{% url 'projects:index' %}">
                     <img src="{% static "/img/logo.png" %}"
                          class=""
                          alt="">
                   </a>
             </div>
-
-            <div class="card">
+            <div class="card" style="border-radius: 4rem;">
                 <div class="card-header pt-3 m-auto bg-body" style="background: transparent;">
                     <h3>Регистрация</h3>
                 </div>
@@ -27,29 +26,28 @@
                     <form method="POST">
                         {% csrf_token %}
                         <fieldset>
-                            <legend>Register here</legend>
-                            {{form.as_p}}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" class="form-control w-100 " placeholder="{{ field.label }}" value="{{ field.value|default:'' }}" style="border-radius: 4rem;">
+                                    {% if field.errors %}
+                                        <div class="invalid-feedback" style="display: block; color: blue " data-toggle="tooltip" title="{{ field.errors.as_text }}">
+                                            {{ field.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
                         </fieldset>
-                        <button class="btn btn-primary" type="submit">Sign Up</button>
+                        <div class="d-flex justify-content-center m-3">
+                            <button class="btn btn-primary" type="submit" style="border-radius: 4rem;">Зарегистрироваться</button>
+                        </div>
                     </form>
-                    {% comment %} <form method='post' class='text-center'>
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="username" placeholder="Введите имя пользователя">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="Введите email">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="password1" placeholder="Введите пароль">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="password2" placeholder="Повторите пароль">
-                        </div>
-                        <button type="submit" class="btn btn-primary ">Зарегистрироваться</button>
-                    </form> {% endcomment %}
                 </div>
             </div>
+            <script>
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+            </script>
         </div>
     </div>
 </div>

@@ -9,7 +9,6 @@ PROGRAMMING_LANGUAGES = [
 ]
 
 class Person(AbstractUser):
-    # name = models.CharField(max_length=255)
     email = models.EmailField()
     password = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)

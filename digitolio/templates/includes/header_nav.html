@@ -7,25 +7,27 @@
              alt="">
       </a>
       <ul class="nav nav-pills">
-          <li class="nav-item btn m-1 bg-info rounded-pill">
+          <li class="nav-item btn m-1 rounded-pill" style='background-color: #E0F4FD;'>
             <a class="text-decoration-none " style='color: #333;' href='{% url 'persons:index' %}'>
                 <img src="{% static 'img/users.svg' %}" alt="Пользователи" class="mr-2">
                 <span class=''>Пользователи</span>
             </a>
           </li>
-          <li class="nav-item btn m-1 bg-info rounded-pill">
+          <li class="nav-item btn m-1 rounded-pill" style='background-color: #E0F4FD;'>
               <a class="text-decoration-none " style="color: #333;">
                   <img src="{% static 'img/magicpen.svg' %}" alt="Добавить проект" class="mr-2">
                   <span class=''>Добавить проект</span>
               </a>
           </li>
-          <li class="nav-item btn m-1 bg-info rounded-pill">
-              <a class="text-decoration-none " style='color: #333;'>
-                  <img src="{% static 'img/notification.svg' %}" alt="Уведомления" class="mr-2">
-                  <span class=''>Уведомления</span>
-              </a>
-          </li>
-          <li class="nav-item btn m-1 bg-info rounded-pill">
+          {% if user.is_authenticated %}
+            <li class="nav-item btn m-1 rounded-pill" style='background-color: #E0F4FD;'>
+                <a class="text-decoration-none " style='color: #333;'>
+                    <img src="{% static 'img/notification.svg' %}" alt="Уведомления" class="mr-2">
+                    <span class=''>Уведомления</span>
+                </a>
+            </li>
+          {% endif %}
+          <li class="nav-item btn m-1 rounded-pill" style='background-color: #E0F4FD;'>
               <a class="text-decoration-none " style='color: #333;'>
                   <img src="{% static 'img/profile-circle.svg' %}" alt="Регистрация" class="mr-2">
                   <span class=''>

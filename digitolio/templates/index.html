@@ -15,49 +15,7 @@
     </header>
     <main class="container">
         <div class='row'>
-            <div class='col-md-2 col-lg-2 rounded-pill'>
-                <div class="card bg-info p-0 m-0 text-bg-light" style='border-radius: 1rem;'>
-                    <div class="card-body">
-                        <h5 class="card-title mb-4">Фильтры</h5>
-                        <form>
-                            <div class="form-group mb-3">
-                                <label>Сортировать по</label><br>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="filter3" id="option1" value="option1">
-                                    <label class="form-check-label" for="option1">Популярное</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="filter3" id="option2" value="option2">
-                                    <label class="form-check-label" for="option2">Новое</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="filter3" id="option3" value="option3">
-                                    <label class="form-check-label" for="option3">Выбор пользователей</label>
-                                </div>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="filter1">Категория</label>
-                                <select class="form-control" id="filter1">
-                                    <option>Выберите опцию</option>
-                                    <option>Опция 1</option>
-                                    <option>Опция 2</option>
-                                    <option>Опция 3</option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="filter2">Язык</label>
-                                <select class="form-control" id="filter2">
-                                    <option>Выберите опцию</option>
-                                    <option>Опция 1</option>
-                                    <option>Опция 2</option>
-                                    <option>Опция 3</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Применить изменения</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            {% include 'includes/filter.html' %}
             <div class='col-md-10 col-lg-10 ps-4'>
                 <div class="container mb-3">
                     <div class="row">

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        {% include 'includes/header_nav.html' %}
+    </header>
+    <main class='ms-3 me-3 p-5' style='background-color: #E0F4FD; border-radius: 1rem;'>
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group row mb-3">
+                            <div class="col-sm-6 text-right">
+                                <label class='fw-bold ' for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            </div>
+                            <div class="col-sm-6">
+                                {{ field }}
+                                <script>
+                                    document.getElementById("{{ field.id_for_label }}").onchange = function() {
+                                      updatePreview(this.id, this.value);
+                                    };
+                                </script>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Создать проект</button>
+                        </div>
+                    </form>
+                </div>
+                <div id='preview' class="col-6 p-5" style='background-color: #BBE4F5; border-radius: 1rem;'>
+                    <div class="text-center mb-5">
+                        <h2 id='title'>Название проекта</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <span>Описание:</span>
+                            <p id='description'>Здесь пока ничего нет(((</p>
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <span>Автор:</span>
+                            <p>{{ user }}</p>
+                            <span>Категория:</span>
+                            <p id='category'>Категория не выбрана</p>
+                            <span>Язык:</span>
+                            <p id='programming_language'>Язык не выбран</p>
+                        </div>
+                    </div>
+                    <div class='row'> 
+                        <span>Ссылка на GitHub: <a id='link_on_code' href="#">Ссылка не указана</a></span>                  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        {% include 'includes/footer_base.html' %}
+    </footer>
+    <script>
+        function updatePreview(fieldId, fieldValue) {
+          const previewElementId = fieldId.replace(/-[a-z]+$/, ""); // Extract field name from ID
+          const previewElement = document.getElementById(previewElementId);
+          if (previewElement) {
+            switch (fieldId) {
+              case "id_title":
+                document.getElementById("title").textContent = fieldValue;
+                break;
+              case "id_description":
+                document.getElementById("description").textContent = fieldValue;
+                break;
+              case "id_category":
+                document.getElementById("category").textContent = fieldValue;
+                break;
+              case "id_programming_language":
+                document.getElementById("programming_language").textContent = fieldValue;
+                break;
+              case "id_link_on_code":
+                document.getElementById("link_on_code").textContent = fieldValue;
+                document.getElementById("link_on_code").href = fieldValue;
+                break;
+            }
+          }
+        }
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

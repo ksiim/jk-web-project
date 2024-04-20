@@ -5,5 +5,6 @@ app_name = 'projects'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    # Add your URL patterns here
+    path('create/', views.create, name='create'),
+    path('project/<int:pk>/', views.project_detail, name='project_detail'),
 ]

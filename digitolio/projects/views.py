@@ -1,23 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Project
+from .forms import ProjectForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 
 def index(request):
     projects = Project.objects.all()
     return render(request, 'index.html', context={'projects': projects})
 
-def create_project(request):
-    if request.method == 'POST':
-        title = request.POST.get('title')
-        description = request.POST.get('description')
-        banner = request.POST.get('banner')
-        hashtags = request.POST.get('hashtags')
-        link_on_code = request.POST.get('link_on_code')
-        project = Project.objects.create(
-            title=title,
-            description=description,
-            banner=banner,
-            hashtags=hashtags,
-            link_on_code=link_on_code
-        )
-        return render(request, 'project.html', context={'project': project})
-    return render(request, 'create_project.html')
+@login_required
+def create(request):
+    form = ProjectForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_project = form.save(commit=False)
+        new_project.author = request.user
+        new_project.save()
+        return redirect('projects:index')
+    context = {
+        'form': form,
+        'button_name': 'Добавить проект',
+    }
+    return render(request, 'create_project.html', context)
+
+
+def project_detail(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    return render(request, 'project_detail.html', {'project': project})

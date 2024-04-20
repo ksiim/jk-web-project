@@ -5,6 +5,9 @@ from .forms import CustomUserCreationForm
 from django.views.generic.edit import CreateView
 
 
+def test(request):
+    return render(request, 'test.html')
+
 def index(request):
     persons = Person.objects.all()
     persons_projects_data = []

@@ -10,8 +10,11 @@ app_name = 'persons'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('<int:user_id>/', views.profile_view, name='profile_view'),
+    path('update/<int:user_id>', views.profile_update_view, name='profile_update'),
     path('test/', views.test, name='test'),
-    path('logout/', LogoutView.as_view(template_name='logged_out.html'), name='logout'),
+    path('logout/', views.person_logout, name='logout'),
+    # path('logout/', LogoutView.as_view(template_name='logged_out.html'), name='logout'),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('password_change/', PasswordChangeView.as_view(template_name='password_change_form.html'), name='password_change'),
     path('password_change/done/', PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),

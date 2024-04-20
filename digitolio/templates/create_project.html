@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load widget_tweaks %}
 <html>
 <head>
     <meta charset="UTF-8">
@@ -14,16 +15,18 @@
     <main class='ms-3 me-3 p-5' style='background-color: #E0F4FD; border-radius: 1rem;'>
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <form method="post">
                         {% csrf_token %}
                         {% for field in form %}
                         <div class="form-group row mb-3">
-                            <div class="col-sm-6 text-right">
+                            <div class="col-sm-5 text-right">
                                 <label class='fw-bold ' for="{{ field.id_for_label }}">{{ field.label }}</label>
                             </div>
-                            <div class="col-sm-6">
-                                {{ field }}
+                            <div class="col-sm-7">
+                                {% comment %} {{ field | addclass:"form-control"}} {% endcomment %}
+                                {% comment %} {{ field | attr:"style: border-radius: 1rem;"}} {% endcomment %}
+                                {{ field | add_class:"form-control" | attr:"style: border-radius: 1rem;"}}
                                 <script>
                                     document.getElementById("{{ field.id_for_label }}").onchange = function() {
                                       updatePreview(this.id, this.value);
@@ -33,7 +36,7 @@
                         </div>
                         {% endfor %}
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary">Создать проект</button>
+                            <button type="submit" class="btn" style="background-color: #BBE4F5;  border-radius: 1rem;">Создать проект</button>
                         </div>
                     </form>
                 </div>

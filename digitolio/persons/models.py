@@ -8,13 +8,19 @@ PROGRAMMING_LANGUAGES = [
     ("csharp", "C#")
 ]
 
+SPEcialization = [
+    ("backend", "Backend"),
+    ("frontend", "Frontend"),
+    ("fullstack", "Fullstack"),
+    ("mobile", "Mobile")
+]
+
 class Person(AbstractUser):
-    email = models.EmailField()
-    password = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
-    experience = models.IntegerField(null=True, blank=True)
-    specialization = models.TextField(null=True, blank=True)
-    programming_language = models.TextField(choices=PROGRAMMING_LANGUAGES, null=True, blank=True)
+    password = models.CharField(max_length=255, verbose_name='Пароль')
+    description = models.TextField(null=True, blank=True, verbose_name='Описание')
+    experience = models.IntegerField(null=True, blank=True, verbose_name='Опыт работы')
+    specialization = models.TextField(max_length=255, null=True, blank=True, verbose_name='Специализация')
+    programming_language = models.TextField(choices=PROGRAMMING_LANGUAGES, null=True, blank=True, verbose_name='Язык программирования')
     
     groups = models.ManyToManyField(
         'auth.Group',

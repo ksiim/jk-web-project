@@ -15,7 +15,7 @@
     </header>
     <main class="container">
         <div class='row'>
-            {% include 'includes/filter.html' %}
+            {% include 'projects/includes/filter.html' %}
             <div class='col-md-10 col-lg-10'>
                 <div class="row mb-3 ">
                     <div class="input-group" >
@@ -28,7 +28,7 @@
                 <div class="container p-4" style='background-color: #E0F4FD; border-radius: 1rem;'>
                     <div class="row row-cols-1 row-cols-md-3">
                         {% for project in projects %}
-                            {% include 'includes/project_small.html' %}
+                            {% include 'projects/includes/project_small.html' %}
                         {% endfor %}
                     </div>
                 </div>

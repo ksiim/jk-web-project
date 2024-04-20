@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 
 def index(request):
     projects = Project.objects.all()
-    return render(request, 'index.html', context={'projects': projects})
+    return render(request, 'projects/index.html', context={'projects': projects})
 
 @login_required
 def create(request):
@@ -20,9 +20,9 @@ def create(request):
         'form': form,
         'button_name': 'Добавить проект',
     }
-    return render(request, 'create_project.html', context)
+    return render(request, 'projects/create_project.html', context)
 
 
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
-    return render(request, 'project_detail.html', {'project': project})
+    return render(request, 'projects/project_detail.html', {'project': project})

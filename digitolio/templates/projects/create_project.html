@@ -24,8 +24,6 @@
                                 <label class='fw-bold ' for="{{ field.id_for_label }}">{{ field.label }}</label>
                             </div>
                             <div class="col-sm-7">
-                                {% comment %} {{ field | addclass:"form-control"}} {% endcomment %}
-                                {% comment %} {{ field | attr:"style: border-radius: 1rem;"}} {% endcomment %}
                                 {{ field | add_class:"form-control" | attr:"style: border-radius: 1rem;"}}
                                 <script>
                                     document.getElementById("{{ field.id_for_label }}").onchange = function() {
@@ -51,7 +49,7 @@
                         </div>
                         <div class="col-md-5 text-center">
                             <span>Автор:</span>
-                            <p>{{ user }}</p>
+                            <a href='{% url 'persons:profile_view' user.id %}'><p>{{ user }}</p></a>
                             <span>Категория:</span>
                             <p id='category'>Категория не выбрана</p>
                             <span>Язык:</span>

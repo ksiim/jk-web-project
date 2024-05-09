@@ -41,7 +41,7 @@
         {% if user.github %}<p>GitHub: <a href="{{ user.github }}">{{ user.github }}</a></p>{% endif %}
         {% if request.user == user %}
         <div class="d-flex justify-content-center">
-            <a href="{% url 'persons:profile_update' user.id %}" style="background-color: #BBE4F5;" class="btn rounded-pill mt-3">Редактировать профиль</a>
+            <a href="{% url 'persons:profile_update' user.username %}" style="background-color: #BBE4F5;" class="btn rounded-pill mt-3">Редактировать профиль</a>
         </div>
         <div class="d-flex justify-content-center">
             <a href="{% url 'persons:logout' %}" style="background-color: #BBE4F5;" class="btn rounded-pill mt-3">Выйти</a>

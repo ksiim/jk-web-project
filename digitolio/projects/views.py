@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import JsonResponse
 from django.db.models import Q
+from django.forms.models import model_to_dict
 
 def index(request):
     projects = Project.objects.all()
@@ -31,6 +32,18 @@ def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
     return render(request, 'projects/project_detail.html', {'project': project})
 
+def project_data(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    project_data = {
+        'id': project.id,
+        'title': project.title,
+        'description': project.description,
+        'author': project.author.username,
+        'category': project.get_category_display(),
+        'programming_language': project.get_programming_language_display(),
+        'link_on_code': project.link_on_code,
+    }
+    return JsonResponse(project_data)
 
 @csrf_exempt
 def search(request):

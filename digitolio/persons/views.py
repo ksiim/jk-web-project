@@ -23,7 +23,6 @@ def profile_view(request, username):
     user = get_object_or_404(User, username=username)
     return render(request, 'persons/profile.html', {'user': user})
 
-
 class SignUp(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('persons:persons')
@@ -34,7 +33,7 @@ class SignUp(CreateView):
         return response
 
 
-@login_required
+@login_required(login_url='persons:login')
 def profile_update_view(request, username):
     user = get_object_or_404(User, username=username)
     form = CustomUserUpdateForm(request.POST or None, instance=user)
@@ -44,7 +43,7 @@ def profile_update_view(request, username):
     return render(request, 'persons/profile_update.html', {'form': form})
 
 
-@login_required
+@login_required(login_url='persons:login')
 def person_logout(request):
     logout(request)
     return render(request, 'persons/logged_out.html', {})

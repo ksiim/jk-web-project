@@ -37,3 +37,6 @@ class Person(AbstractUser):
         help_text='Specific permissions for this person.',
         verbose_name='user permissions',
     )
+
+    class Meta:
+        ordering = ['-date_joined']

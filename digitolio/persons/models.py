@@ -18,8 +18,8 @@ SPEcialization = [
 class Person(AbstractUser):
     password = models.CharField(max_length=255, verbose_name='Пароль')
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
-    experience = models.IntegerField(null=True, blank=True, verbose_name='Опыт работы')
-    specialization = models.TextField(max_length=255, null=True, blank=True, verbose_name='Специализация')
+    # experience = models.IntegerField(null=True, blank=True, verbose_name='Опыт работы')
+    # specialization = models.TextField(max_length=255, null=True, blank=True, verbose_name='Специализация')
     programming_language = models.TextField(choices=PROGRAMMING_LANGUAGES, null=True, blank=True, verbose_name='Язык программирования')
     
     groups = models.ManyToManyField(

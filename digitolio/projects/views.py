@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 def index(request):
-    projects = Project.objects.all()
+    projects = Project.objects.all().order_by('-created_at')
     return render(request, 'projects/index.html', context={'projects': projects})
 
 @login_required

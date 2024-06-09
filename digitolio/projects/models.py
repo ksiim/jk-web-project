@@ -10,7 +10,14 @@ PROGRAMMING_LANGUAGES = [
     ("csharp", "C#")
 ]
 
-CATEGORY = [('web', 'Web'), ('mobile', 'Mobile'), ('desktop', 'Desktop'), ('game', 'Game')]
+CATEGORY = [
+    ('web', 'Web'),
+    ('mobile', 'Mobile'),
+    ('desktop', 'Desktop'),
+    ('game', 'Game'),
+    ('ml', 'Machine Learning'),
+    ('ds', 'Data Science'),
+    ('cv', 'Computer Vision')]
 
 class Project(models.Model):
     title = models.CharField(max_length=255, verbose_name='Название')
@@ -28,6 +35,7 @@ class Project(models.Model):
     class Meta:
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.title

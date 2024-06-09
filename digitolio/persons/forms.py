@@ -15,7 +15,7 @@ class CustomUserUpdateForm(forms.ModelForm):
         model = Person
         fields = [
             'username', 'first_name', 'last_name', 'description',
-            'experience', 'specialization',
+            # 'experience', 'specialization',
             'programming_language'
         ]
 
@@ -24,8 +24,8 @@ class CustomUserUpdateForm(forms.ModelForm):
             'first_name': 'Имя',
             'last_name': 'Фамилия',
             'description': 'Описание',
-            'experience': 'Опыт работы',
-            'specialization': 'Специалтзация',
+            # 'experience': 'Опыт работы',
+            # 'specialization': 'Специалтзация',
             'programming_language': 'Язык программирования'
         }
         help_texts = {
@@ -33,7 +33,7 @@ class CustomUserUpdateForm(forms.ModelForm):
             'first_name': 'Введите имя.',
             'last_name': 'Введите фамилию.',
             'description': 'Введите описание.',
-            'experience': 'Введите опыт работы.',
-            'specialization': 'Введите специализацию.',
+            # 'experience': 'Введите опыт работы.',
+            # 'specialization': 'Введите специализацию.',
             'programming_language': 'Введите язык программирования.'
         }

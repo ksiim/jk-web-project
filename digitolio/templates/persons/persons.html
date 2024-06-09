@@ -27,7 +27,7 @@
                 <div class="container p-4" style='background-color: #E0F4FD; border-radius: 1rem;'>
                     {% for data in persons_projects_data %}
                     <div class="row row-cols-1 row-cols-md-4">
-                        <a class='text-decoration-none' style="color: black;" href="{% url 'persons:profile_view' data.person.id %}">
+                        <a class='text-decoration-none' style="color: black;" href="{% url 'persons:profile_view' data.person.username %}">
                             <div class="col mb-3">
                                 <div class='container user-card'>
                                     <div class="row">

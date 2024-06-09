@@ -9,10 +9,10 @@ class PersonAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     model = Person
     fieldsets = UserAdmin.fieldsets + (
-            ('Additional Information', {'fields': ('description', 'experience', 'specialization', 'programming_language')}),
+            ('Additional Information', {'fields': ('description',  'programming_language')}),
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
-            ('Additional Information', {'fields': ('description', 'experience', 'specialization', 'programming_language')}),
+            ('Additional Information', {'fields': ('description',  'programming_language')}),
     )
 
 admin.site.register(Person, PersonAdmin)

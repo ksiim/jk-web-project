@@ -20,6 +20,8 @@ def create(request):
         new_project = form.save(commit=False)
         new_project.author = request.user
         new_project.save()
+        new_project.tags.set(form.cleaned_data['tags'])
+        new_project.save()
         return redirect('projects:index')
     context = {
         'form': form,
@@ -39,7 +41,7 @@ def project_data(request, project_id):
         'title': project.title,
         'description': project.description,
         'author': project.author.username,
-        'category': project.get_category_display(),
+        'tags': project.tags.all(),
         'programming_language': project.get_programming_language_display(),
         'link_on_code': project.link_on_code,
     }

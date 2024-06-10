@@ -7,11 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создание проекта</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <header>
         {% include 'includes/header_nav.html' %}
     </header>
+    {{ form.media.css }}
     <main class='ms-3 me-3 p-5' style='background-color: #E0F4FD; border-radius: 1rem;'>
         <div class="container">
             <div class="row justify-content-between">
@@ -19,24 +24,25 @@
                     <form method="post">
                         {% csrf_token %}
                         {% for field in form %}
-                        <div class="form-group row mb-3">
-                            <div class="col-sm-5 text-right">
-                                <label class='fw-bold ' for="{{ field.id_for_label }}">{{ field.label }}</label>
-                            </div>
-                            <div class="col-sm-7">
-                                {{ field | add_class:"form-control" | attr:"style: border-radius: 1rem;"}}
+                            <div class="form-group row mb-3">
+                                <div class="col-sm-5 text-right">
+                                    <label class='fw-bold ' for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{ field | add_class:"form-control" | attr:"style: border-radius: 1rem;" }}
+                                </div>
                                 <script>
                                     document.getElementById("{{ field.id_for_label }}").onchange = function() {
                                       updatePreview(this.id, this.value);
                                     };
                                 </script>
                             </div>
-                        </div>
                         {% endfor %}
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn" style="background-color: #BBE4F5;  border-radius: 1rem;">Создать проект</button>
-                        </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn" style="background-color: #BBE4F5;  border-radius: 1rem;">Создать проект</button>
+                    </div>
                     </form>
+                    {{ form.media.js }}
                 </div>
                 <div id='preview' class="col-6 p-5" style='background-color: #BBE4F5; border-radius: 1rem;'>
                     <div class="text-center mb-5">
@@ -91,7 +97,42 @@
             }
           }
         }
-        </script>
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
+<!-- 
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html>
+<head>
+    <title>Добавление заявки</title>
+    {{ form.media.css }}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="../static/application.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/sidebar_navigation.css">
+</head>
+<body>
+    <form method="post" class='col-md-8'>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group row mb-3">
+                <div class="col-sm-3 text-right">
+                    <label class='fw-bold ' for="{{ field.id_for_label }}">{{ field.label }}</label>
+                </div>
+                <div class="col-sm-9">
+                    {{ field | add_class:"form-control" | attr:"style: border-radius: 1rem;" }}
+                </div>
+            </div>
+        {% endfor %}
+    </form>
+    {{ form.media.js }}
+    <script src="{% static 'application-form.js' %}"></script>
+</body> -->

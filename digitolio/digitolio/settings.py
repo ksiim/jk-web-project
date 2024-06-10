@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects.apps.ProjectsConfig',
     'persons.apps.PersonsConfig',
+    'django_select2',
     'widget_tweaks',
 ]
 

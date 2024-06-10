@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="35ce1d9d-21d2-46f4-8f9e-5c5374868dc5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitolio/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/digitolio/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +60,9 @@
       <workItem from="1712592021554" duration="663000" />
       <workItem from="1712864456682" duration="601000" />
       <workItem from="1713641115307" duration="1000" />
+      <workItem from="1715797072363" duration="5000" />
+      <workItem from="1716294741689" duration="24000" />
+      <workItem from="1716481424633" duration="44000" />
     </task>
     <servers />
   </component>

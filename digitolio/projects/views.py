@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.forms.models import model_to_dict
 
 def index(request):
-    projects = Project.objects.all()
+    projects = Project.objects.all().order_by('-created_at')
     return render(request, 'projects/index.html', context={'projects': projects})
 
 @login_required

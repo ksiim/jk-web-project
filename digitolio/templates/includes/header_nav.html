@@ -1,44 +1,44 @@
 {% load static %}
 <div class='container '>
 <nav class="navbar">
-    <div class="container p-4">
+    <div class="container">
       <a class="navbar-brand" href='{% url 'projects:index' %}'>
-        <img src="{% static "/img/logo.png" %}"
-             class="d-inline-block align-top h-60"
-             alt="">
+        <img src="{% static "/img/new_logo.png" %}"
+             class="d-inline-block align-top"
+             alt="" height='60vh'>
       </a>
       <ul class="nav nav-pills">
-          <li class="nav-item btn m-1 rounded-pill" style='background-color: #E0F4FD;'>
-            <a class="text-decoration-none " style='color: #333;' href='{% url 'persons:persons' %}'>
-                <img src="{% static 'img/users.svg' %}" alt="Пользователи" class="mr-2">
+          <li class="nav-item btn m-1 rounded-pill" style='background-color: #2F9286;'>
+            <a class="text-decoration-none d-block" style='color: #ffffff;' href='{% url 'persons:persons' %}'>
+                <img src="{% static 'img/people.svg' %}" alt="Пользователи" class="d-inline-block mr-2">
                 <span class=''>Пользователи</span>
             </a>
           </li>
           {% if user.is_authenticated %}
-            <li class="nav-item btn m-1 rounded-pill" style='background-color: #E0F4FD;'>
-                <a class="text-decoration-none " style='color: #333;' href='{% url 'projects:create' %}'>
-                    <img src="{% static 'img/magicpen.svg' %}" alt="Добавить проект" class="mr-2">
+            <li class="nav-item btn m-1 rounded-pill" style='background-color: #2F9286;'>
+                <a class="text-decoration-none d-block" style='color: #ffffff;' href='{% url 'projects:create' %}'>
+                    <img src="{% static 'img/magicpen.svg' %}" alt="Добавить проект" class="d-inline-block mr-2">
                     <span class=''>Добавить проект</span>
                 </a>
             </li>
           {% endif %}
           {% if user.is_authenticated %}
-            <li class="nav-item btn m-1 rounded-pill" style='background-color: #E0F4FD;'>
-                <a class="text-decoration-none " style='color: #333;'>
-                    <img src="{% static 'img/notification.svg' %}" alt="Уведомления" class="mr-2">
+            <li class="nav-item btn m-1 rounded-pill" style='background-color: #2F9286;'>
+                <a class="text-decoration-none d-block" style='color: #ffffff;'>
+                    <img src="{% static 'img/notification.svg' %}" alt="Уведомления" class="d-inline-block mr-2">
                     <span class=''>Уведомления</span>
                 </a>
             </li>
           {% endif %}
-          <li class="nav-item btn m-1 rounded-pill" style='background-color: #E0F4FD;'>
+          <li class="nav-item btn m-1 rounded-pill" style='background-color: #2F9286;'>
             {% if user.is_authenticated %}
-                <a class="text-decoration-none " style='color: #333;' href={% url 'persons:profile_view' request.user.username %}>
-                    <img src="{% static 'img/profile-circle.svg' %}" alt="Профиль" class="mr-2">
+                <a class="text-decoration-none d-block" style='color: #ffffff;' href={% url 'persons:profile_view' request.user.username %}>
+                    <img src="{% static 'img/profile-circle.svg' %}" alt="Профиль" class="d-inline-block mr-2">
                     <span class=''>Профиль</span>
                 </a>
             {% else %}
-                <a class="text-decoration-none " style='color: #333;' href={% url 'persons:login' %}>
-                    <img src="{% static 'img/profile-circle.svg' %}" alt="Регистрация" class="mr-2">
+                <a class="text-decoration-none d-block" style='color: #ffffff;' href={% url 'persons:login' %}>
+                    <img src="{% static 'img/profile-circle.svg' %}" alt="Регистрация" class="d-inline-block mr-2">
                     <span class=''>Регистрация/Вход</span>
                 </a>
             {% endif %}

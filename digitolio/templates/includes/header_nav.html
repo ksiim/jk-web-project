@@ -8,31 +8,23 @@
              alt="" height='60vh'>
       </a>
       <ul class="nav nav-pills">
-          <li class="nav-item btn m-1 rounded-pill" style='background-color: #2F9286;'>
+          <li class="nav-item btn m-1 rounded-pill d-flex align-items-center" style='background-color: #2F9286;'>
             <a class="text-decoration-none d-block" style='color: #ffffff;' href='{% url 'persons:persons' %}'>
                 <img src="{% static 'img/people.svg' %}" alt="Пользователи" class="d-inline-block mr-2">
                 <span class=''>Пользователи</span>
             </a>
           </li>
-          {% if user.is_authenticated %}
-            <li class="nav-item btn m-1 rounded-pill" style='background-color: #2F9286;'>
+          {% if request.user.is_authenticated %}
+            <li class="nav-item btn m-1 rounded-pill d-flex align-items-center" style='background-color: #2F9286;'>
                 <a class="text-decoration-none d-block" style='color: #ffffff;' href='{% url 'projects:create' %}'>
                     <img src="{% static 'img/magicpen.svg' %}" alt="Добавить проект" class="d-inline-block mr-2">
                     <span class=''>Добавить проект</span>
                 </a>
             </li>
           {% endif %}
-          {% if user.is_authenticated %}
-            <li class="nav-item btn m-1 rounded-pill" style='background-color: #2F9286;'>
-                <a class="text-decoration-none d-block" style='color: #ffffff;'>
-                    <img src="{% static 'img/notification.svg' %}" alt="Уведомления" class="d-inline-block mr-2">
-                    <span class=''>Уведомления</span>
-                </a>
-            </li>
-          {% endif %}
-          <li class="nav-item btn m-1 rounded-pill" style='background-color: #2F9286;'>
-            {% if user.is_authenticated %}
-                <a class="text-decoration-none d-block" style='color: #ffffff;' href={% url 'persons:profile_view' request.user.username %}>
+          <li class="nav-item btn m-1 rounded-pill d-flex align-items-center" style='background-color: #2F9286;'>
+            {% if request.user.is_authenticated %}
+                <a class="text-decoration-none d-block " style='color: #ffffff;' href={% url 'persons:profile_view' request.user.username %}>
                     <img src="{% static 'img/profile-circle.svg' %}" alt="Профиль" class="d-inline-block mr-2">
                     <span class=''>Профиль</span>
                 </a>

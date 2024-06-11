@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'persons.apps.PersonsConfig',
     'django_select2',
     'widget_tweaks',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -98,3 +99,6 @@ LOGIN_REDIRECT_URL = "projects:index"
 AUTH_USER_MODEL = 'persons.Person'
 
 LOGOUT_REDIRECT_URL = 'persons:index'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

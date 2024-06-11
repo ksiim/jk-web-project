@@ -10,13 +10,66 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  <style>
+    .avatar-container {
+      position: relative;
+      display: inline-block;
+    }
+    .avatar-container input[type="file"] {
+      display: none;
+    }
+    .avatar-container img, .avatar-container .placeholder {
+      cursor: pointer;
+      border-radius: 1rem;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+    .avatar-container .placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed #ccc;
+    }
+    .background-thumbnail {
+      cursor: pointer;
+      width: 200px;
+      height: 100px;
+      object-fit: cover;
+      border: 2px solid transparent;
+    }
+    .background-thumbnail.selected {
+      border-color: #2F9286;
+    }
+    .background-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .background-grid img {
+      cursor: pointer;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border: 2px solid transparent;
+    }
+    .background-grid img.selected {
+      border-color: #2F9286;
+    }
+    .modal-body .background-grid img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
 </head>
 <body>
   <header>
     {% include 'includes/header_nav.html' %}
   </header>
-  <main class='ms-3 me-3 p-5' style='background-color: #E0F4FD; border-radius: 1rem;'>
-    <div class='col-7 m-auto text-center'>
+  <main class='ms-3 me-3 p-5'>
+    <div class='col-5 m-auto text-center p-5' style='background-color: #F6F6F6; border-radius: 1rem;'>
       <h3 class='mb-5'>Редактирование профиля</h3>
       {% if form.errors %}
         <div class="alert alert-danger" role="alert">
@@ -28,30 +81,57 @@
           </ul>
         </div>
       {% endif %}
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {% for field in form %}
-          <div class="form-group row mb-3">
-            <div class="col-sm-6 text-right">
-              <label class='fw-bold ' for="{{ field.id_for_label }}">{{ field.label }}</label>
-            </div>
-            <div class="col-sm-6">
-              {{ field | add_class:"form-control" | attr:"style: border-radius: 1rem;"}}
-              {% if field.errors %}
-                <div class="invalid-feedback">
-                  <strong>{{ field.label }}:</strong>
-                  <ul>
-                    {% for error in field.errors %}
-                      <li>{{ field.errors.as_text }}</li>
-                    {% endfor %}
-                  </ul>
-                </div>
-              {% endif %}
-            </div>
+        <div class="form-group row mb-3">
+          <div class="col-sm-6 text-right">
+            <label class='fw-bold' for="{{ form.avatar.id_for_label }}">Аватар</label>
           </div>
+          <div class="col-sm-6 avatar-container">
+            <input type="file" id="{{ form.avatar.id_for_label }}" name="{{ form.avatar.name }}" accept="image/*" onchange="previewAvatar(event)">
+            {% if user.avatar %}
+              <img src="{{ user.avatar.url }}" alt="Аватар" id="avatarPreview" class="img-fluid" onclick="document.getElementById('{{ form.avatar.id_for_label }}').click();">
+            {% else %}
+              <div class="placeholder" id="avatarPlaceholder" onclick="document.getElementById('{{ form.avatar.id_for_label }}').click();">
+                Нет фотографии
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-sm-6 text-right">
+            <label class='fw-bold' for="id_profile_background">Фон профиля</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="hidden" id="id_profile_background" name="profile_background" value="{{ user.profile_background }}">
+            <img src="{% static 'img/backgrounds/' %}{{ user.profile_background }}" alt="Текущий фон профиля" class="background-thumbnail" data-bs-toggle="modal" data-bs-target="#backgroundModal">
+          </div>
+        </div>
+
+        {% for field in form %}
+        {% if field.name != 'avatar' and field.name != 'profile_background' %}
+            <div class="form-group row mb-3">
+              <div class="col-sm-6 text-right">
+                <label class='fw-bold' for="{{ field.id_for_label }}">{{ field.label }}</label>
+              </div>
+              <div class="col-sm-6">
+                {{ field|add_class:"form-control"|attr:"style: border-radius: 1rem;" }}
+                {% if field.errors %}
+                  <div class="invalid-feedback">
+                    <strong>{{ field.label }}:</strong>
+                    <ul>
+                      {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
         {% endfor %}
         <div class="form-group text-center mt-3">
-          <button type="submit" style="background-color: #BBE4F5;" class="btn rounded-pill mt-3">Сохранить</button>
+          <button type="submit" style="background-color: #2F9286; color: #FFFFFF" class="btn rounded-pill mt-3">Сохранить</button>
         </div>
       </form>
     </div>
@@ -59,6 +139,68 @@
   <footer>
     {% include 'includes/footer_base.html' %}
   </footer>
+
+  <!-- Modal for selecting profile background -->
+  <div class="modal fade" id="backgroundModal" tabindex="-1" aria-labelledby="backgroundModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="backgroundModalLabel">Выберите фон профиля</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="background-grid">
+            {% for bg in form.fields.profile_background.choices %}
+              <img src="{% static 'img/backgrounds/' %}{{ bg.0 }}" alt="{{ bg.1 }}" class="bg-option-modal {% if user.profile_background == bg.0 %}selected{% endif %}" data-bg="{{ bg.0 }}">
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script>
+    function previewAvatar(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function() {
+        const imgElement = document.getElementById('avatarPreview');
+        const placeholderElement = document.getElementById('avatarPlaceholder');
+        if (imgElement) {
+          imgElement.src = reader.result;
+        } else if (placeholderElement) {
+          placeholderElement.innerHTML = `<img src="${reader.result}" alt="Аватар" id="avatarPreview" class="img-fluid">`;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const bgOptions = document.querySelectorAll('.bg-option');
+      const bgModalOptions = document.querySelectorAll('.bg-option-modal');
+      const currentBgThumbnail = document.querySelector('.background-thumbnail');
+
+      bgOptions.forEach(option => {
+        option.addEventListener('click', function () {
+          bgOptions.forEach(opt => opt.classList.remove('selected'));
+          this.classList.add('selected');
+          document.getElementById('id_profile_background').value = this.dataset.bg;
+        });
+      });
+
+      bgModalOptions.forEach(option => {
+        option.addEventListener('click', function () {
+          bgModalOptions.forEach(opt => opt.classList.remove('selected'));
+          this.classList.add('selected');
+          document.getElementById('id_profile_background').value = this.dataset.bg;
+          currentBgThumbnail.src = this.src;
+          var myModalEl = document.getElementById('backgroundModal');
+          var modal = bootstrap.Modal.getInstance(myModalEl);
+          modal.hide();
+        });
+      });
+    });
+  </script>
 </body>
 </html>

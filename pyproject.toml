@@ -10,6 +10,8 @@ python = "^3.11"
 django = "^5.0.3"
 django-widget-tweaks = "^1.5.0"
 django-select2 = "^8.1.2"
+pillow = "^10.3.0"
+sorl-thumbnail = "^12.10.0"
 
 
 [build-system]

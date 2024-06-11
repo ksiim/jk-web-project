@@ -9,3 +9,36 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.form-control {
+    border-color: #2F9286;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #6AC3BE;  
+}
+
+/* Изменение фона и текста автозаполнения */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #6AC3BE inset;
+}
+
+/* Изменение фона автозаполнения при получении фокуса */
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #6AC3BE inset;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #2F9286;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #2F9286;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #2F9286;
+}

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
 <div class="container mt-5">
@@ -16,14 +17,14 @@
         <div class="col-md-6">
             <div class='container text-center mb-4'>
                 <a class="navbar-brand" href="{% url 'projects:index' %}">
-                    <img src="{% static "/img/logo.png" %}"
+                    <img src="{% static "/img/new_logo.png" %}"
                          class=""
                          alt="">
                   </a>
             </div>
             <div class="card" style="border-radius: 4rem;">
-                <div class="card-header pt-3 m-auto bg-body" style="background: transparent;">
-                    <h3>Регистрация</h3>
+                <div class="card-header m-auto bg-body" style="background: transparent;">
+                    <h3 style="color: #2F9286; padding-top: 20px;">Регистрация</h3>
                 </div>
                 <div class="card-body">
                     <form method="POST">
@@ -41,7 +42,7 @@
                             {% endfor %}
                         </fieldset>
                         <div class="d-flex justify-content-center m-3">
-                            <button class="btn" type="submit" style="background-color: #BBE4F5;  border-radius: 1rem;">Зарегистрироваться</button>
+                            <button class="btn" type="submit" style="background-color: #2F9286; color: #FFFFFF;  border-radius: 1rem;">Зарегистрироваться</button>
                         </div>
                     </form>
                 </div>

@@ -36,10 +36,14 @@ class SignUp(CreateView):
 @login_required(login_url='persons:login')
 def profile_update_view(request, username):
     user = get_object_or_404(User, username=username)
-    form = CustomUserUpdateForm(request.POST or None, instance=user)
-    if form.is_valid():
-        form.save()
-        return redirect('persons:profile_view', username=username)
+    if request.method == 'POST':
+        form = CustomUserUpdateForm(request.POST, request.FILES, instance=user)
+        print(request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('persons:profile_view', username=username)
+    else:
+        form = CustomUserUpdateForm(instance=user)
     return render(request, 'persons/profile_update.html', {'form': form})
 
 

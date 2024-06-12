@@ -3,6 +3,42 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+tag_image_dict = {
+    "DataScience": "cpp0.svg",
+    "ML": "cpp1.svg",
+    "AI": "cpp2.svg",
+    "DataAnalysis": "cpp3.svg",
+    "DataProcessing": "cpp4.svg",
+    "FeatureExtraction": "cpp5.svg",
+    "DataModeling": "csharp0.svg",
+    "MLAlgorithms": "csharp1.svg",
+    "DeepLearning": "csharp2.svg",
+    "NeuralNetworks": "csharp3.svg",
+    "RegressionAnalysis": "csharp4.svg",
+    "DataClustering": "csharp5.svg",
+    "DataVisualization": "java0.svg",
+    "BigData": "java1.svg",
+    "DataPreprocessing": "java2.svg",
+    "RecommendationSystems": "java3.svg",
+    "UnsupervisedLearning": "java4.svg",
+    "SupervisedLearning": "kotlin0.svg",
+    "TechnicalDataAnalysis": "kotlin1.svg",
+    "ProbabilityTheory": "kotlin2.svg",
+    "Statistics": "kotlin3.svg",
+    "BusinessIntelligence": "kotlin4.svg",
+    "TimeSeriesAnalysis": "python0.svg",
+    "ModelOptimization": "python1.svg",
+    "CloudComputing": "python2.svg",
+    "ImageAnalysis": "python3.svg",
+    "PredictiveAnalytics": "python4.svg",
+    "ProcessAutomation": "ruby0.svg",
+    "DistributedSystems": "ruby1.svg",
+    "SQL": "ruby2.svg",
+    "Regularization": "ruby3.svg",
+    "AlgorithmOptimization": "ruby4.svg"
+}
+
+
 PROGRAMMING_LANGUAGES = [
     ("Python", "Python"),
     ("JavaScript", "JavaScript"),
@@ -78,3 +114,10 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_first_tag_image(self):
+        default_image = "cpp0.svg"
+        if self.tags.exists():
+            first_tag = self.tags.first().name
+            return f'img/cards/{tag_image_dict.get(first_tag, default_image)}'
+        return f'img/cards/{default_image}'

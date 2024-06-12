@@ -38,15 +38,17 @@
       height: 100px;
       object-fit: cover;
       border: 2px solid transparent;
+      border-radius: 1rem;
     }
     .background-thumbnail.selected {
       border-color: #2F9286;
     }
     .background-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
       gap: 10px;
       margin-top: 20px;
+      justify-items: center;
     }
     .background-grid img {
       cursor: pointer;
@@ -54,11 +56,13 @@
       height: 100px;
       object-fit: cover;
       border: 2px solid transparent;
+      border-radius: 1rem;
     }
     .background-grid img.selected {
       border-color: #2F9286;
     }
     .modal-body .background-grid img {
+      border-radius: 1rem;
       max-width: 100%;
       max-height: 100%;
     }
@@ -151,7 +155,9 @@
         <div class="modal-body">
           <div class="background-grid">
             {% for bg in form.fields.profile_background.choices %}
-              <img src="{% static 'img/backgrounds/' %}{{ bg.0 }}" alt="{{ bg.1 }}" class="bg-option-modal {% if user.profile_background == bg.0 %}selected{% endif %}" data-bg="{{ bg.0 }}">
+                {% if not forloop.first %}
+                    <img src="{% static 'img/backgrounds/' %}{{ bg.0 }}" alt="{{ bg.1 }}" class="bg-option-modal {% if user.profile_background == bg.0 %}selected{% endif %}" data-bg="{{ bg.0 }}">
+                {% endif %}
             {% endfor %}
           </div>
         </div>

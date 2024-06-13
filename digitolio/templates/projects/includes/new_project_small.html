@@ -13,7 +13,7 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s;
     }
-    
+
     .project-card:hover {
         transform: scale(1.05);
     }
@@ -74,6 +74,16 @@
     .expand-icon {
         cursor: pointer;
     }
+
+    .project-title-author a {
+        color: #377275;
+        font-size: 14px;
+        font-weight: regular
+    }
+    
+    .project-title-author a:hover {
+        color: #113739;
+    }
 </style>
 
 <div class="project-card">
@@ -82,7 +92,9 @@
         <div class="project-header">
             <div class="project-title-author">
                 <p class="p-0 m-0" style="color: #377275; font-size: 16px; font-weight: bold; margin-bottom: 0px;">{{ project.title }}</p>
-                <p class="p-0 m-0" style="color: #377275; font-size: 14px; font-weight: regular">{{ project.author }}</p>
+                <a class="p-0 m-0 text-decoration-none" href="{% url 'persons:profile_view' project.author %}">
+                    {{ project.author }}
+                </a>
             </div>
             <a class = 'text-decoration-none p-0 m-0' href="{% url 'projects:project_detail' project.id %}">
                 <img src="{% static 'img/maximize.svg' %}" alt="Expand" class="p-0 m-0 expand-icon">

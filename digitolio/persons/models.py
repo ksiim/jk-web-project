@@ -27,7 +27,7 @@ class Person(AbstractUser):
     year = models.IntegerField(max_length=4, null=True, blank=True, verbose_name='Год обучения')
     team = models.CharField(max_length=10, null=True, blank=True, verbose_name='Команда')
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True, verbose_name='Аватар')
-    profile_background = models.CharField(max_length=255, choices=get_background_image_choices(), null=True, blank=True, verbose_name='Фон профиля', default='profile_background.png')
+    profile_background = models.CharField(max_length=255, choices=get_background_image_choices(), null=True, blank=True, verbose_name='Фон профиля', default='profile_background.jpg')
     programming_language = models.TextField(choices=PROGRAMMING_LANGUAGES, null=True, blank=True, verbose_name='Язык программирования')
     tg_url = models.CharField(max_length=50, null=True, blank=True, verbose_name='Telegram')
     discord_url = models.CharField(max_length=50, null=True, blank=True, verbose_name='Discord')

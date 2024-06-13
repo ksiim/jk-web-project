@@ -8,7 +8,8 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = Person
         fields = [
-            'username', 'email', 'password1',
+            'username', 'first_name',
+            'last_name', 'email', 'password1',
             'password2'
         ]
 
@@ -24,7 +25,7 @@ class CustomUserUpdateForm(forms.ModelForm):
         ]
 
         labels = {
-            'username': 'Имя пользователя',
+            'username': 'Никнейм',
             'first_name': 'Имя',
             'last_name': 'Фамилия',
             'year': 'Год обучения',

@@ -90,6 +90,16 @@
                             </div>
                         </div>
                     </div>
+                        
+                </div>
+            </div>
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    {% for project in user.projects.all|slice:":3" %}
+                        <div class="col-md-4 d-flex justify-content-center">
+                            {% include 'projects/includes/new_project_small.html' %}
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         

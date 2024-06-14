@@ -87,10 +87,10 @@
                                 </div>
                                 <div class="user-details" style="">
                                     <div class="main-info">
-                                        <p class="m-0 text-start" style="color: #113739; font-size: 20px;">{{ data.person.first_name }}
-                                        <p class="m-0 text-start" style="color: #113739; font-size: 20px;">{{ data.person.last_name }}</p>
-                                        <a class="text-decoration-none d-flex text-start" href="{% url 'persons:profile_view' data.person.username %}">
-                                            {{ data.person.username }}
+                                        <a class="text-decoration-none text-start" href="{% url 'persons:profile_view' data.person.username %}">
+                                            <p class="m-0 text-start" style=" font-size: 20px;">{{ data.person.first_name }}
+                                            <p class="m-0 text-start" style=" font-size: 20px;">{{ data.person.last_name }}</p>
+                                            <p class="m-0 text-start">{{ data.person.username }}</p>
                                         </a>
                                     </div>
                                     <div class="additional-info">

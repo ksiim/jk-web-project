@@ -17,7 +17,7 @@
             background-color: #FFFFFF;
             border-radius: 20px;
             padding: 24px;
-            margin: auto;
+            margin-bottom: 24px;
         }
 
         .background-image {
@@ -56,10 +56,6 @@
             bottom: 10px;
             left: 120px;
             color: #113739;
-        }
-
-        .project-details {
-            {% comment %} background-color: #fff; {% endcomment %}
         }
 
         .tag-badge {
@@ -113,6 +109,33 @@
             justify-content: center;
             margin-bottom: 10px;
         }
+
+        .btns {
+            height: 100%;
+        }
+
+        .project-actions {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .project-actions a {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #2F9286;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .project-actions a:hover {
+            background-color: #113739;
+        }
         
     </style>
 </head>
@@ -121,22 +144,10 @@
         {% include 'includes/header_nav.html' %}
     </header>
     <main class="container my-5">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-md-5">
+        <div class="row justify-content-center align-items-end">
+            <div class="col-md-8">
                 <div class="project-card">
                     <div class="background-image" style="background-image: url('{% static "img/backgrounds/" %}{{ project.author.profile_background }}');">
-                        <div class="top-right-images">
-                            <a>
-                                <div class="circle">
-                                    <img src="{% static 'img/close-circle.svg' %}" alt="Close" width="26px" height="26px">
-                                </div>
-                            </a>
-                            <a href="{% url 'projects:project_detail' project.id %}">
-                                <div class="circle">
-                                    <img src="{% static 'img/export.svg' %}" alt="Экспорт" width="24px" height="24px">
-                                </div>
-                            </a>
-                        </div>
                         {% if user.avatar %}
                             <img src="{{ user.avatar.url }}" alt="Аватар" class="avatar">
                         {% else %}
@@ -153,12 +164,10 @@
                     </div>
                     <div class="project-details">
                         <div class="text-center mb-4">
-                            <h2 id="title" style="font-size: 20px;">{{ project.title }}</h2>
+                            <h2 id="title" style="font-size: 20px; word-wrap: break-word;">{{ project.title }}</h2>
                         </div>
                         <div class="description">
-                            {% with truncated_description=project.description|slice:":430" %}
-                                {{ truncated_description }}{% if project.description|length > 430 %}...{% endif %}
-                            {% endwith %}
+                            {{ project.description }}
                         </div>
                         <div class="row mt-4">
                             <div class="col-md-9">
@@ -181,6 +190,18 @@
                     </div>
                 </div>
             </div>
+            {% if user == project.author %}
+                <div class="btns col-md-1">
+                    <div class="project-actions">
+                        <a href="" class="">
+                            <img src="{% static 'img/edit.svg' %}" alt="Редактировать" width="32px" height="32px">
+                        </a>
+                        <a href="" class="">
+                            <img src="{% static 'img/trash.svg' %}" alt="Удалить" width="32px" height="32px">
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </main>
     <footer>

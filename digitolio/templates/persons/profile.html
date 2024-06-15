@@ -16,6 +16,7 @@
         header {
             background-image: url("{% if user.profile_background %}{% static 'img/backgrounds/' %}{{ user.profile_background }}{% else %}{% static 'img/backgrounds/profile_background.png' %}{% endif %}");
             background-size: cover;
+            box-shadow: 0px 10px 10px 0 #E4E3E3;
         }
     </style>
 </head>
@@ -25,7 +26,7 @@
         <div class='container p-5'>
             <div class='row mb-3'>
                 <div class='col-12'>
-                    <h1 style="color: #1B5C60">
+                    <h1 style="color: #1B5C60; text-shadow: 0px 4px 4px color(display-p3 0.000 0.000 0.000 / 0.25);">
                         {% if user.first_name %}{{ user.first_name }}{% endif %}
                         {% if user.last_name %}{{ user.last_name }}{% endif %}
                         ({{ user.username }})

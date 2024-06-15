@@ -15,7 +15,7 @@
         flex-direction: column;
         justify-content: space-between;
         position: relative;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        {% comment %} box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); {% endcomment %}
         transition: transform 0.3s;
     }
 
@@ -218,6 +218,7 @@
                 </a>
             </div>
             <a class='maximize text-decoration-none p-0 m-0' onclick="openModal({{ project.id }})">
+
                 <img src="{% static 'img/maximize.svg' %}" alt="Expand" class="p-0 m-0 expand-icon">
             </a>
         </div>

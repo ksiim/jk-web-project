@@ -28,3 +28,4 @@ class ProjectForm(forms.ModelForm):
             'programming_language': 'Выберите язык программирования проекта.',
             'link_on_code': 'Введите ссылку на код проекта на гитхабе.',
         }
+        

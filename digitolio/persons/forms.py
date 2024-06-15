@@ -18,7 +18,7 @@ class CustomUserUpdateForm(forms.ModelForm):
         model = Person
         fields = [
             'username', 'first_name', 'last_name',
-            'year', 'team', 'description',
+            'year', 'group', 'description',
             'avatar', 'programming_language',
             'tg_url', 'discord_url', 'github_url',
             'profile_background'
@@ -29,21 +29,20 @@ class CustomUserUpdateForm(forms.ModelForm):
             'first_name': 'Имя',
             'last_name': 'Фамилия',
             'year': 'Год обучения',
-            'team': 'Команда',
             'description': 'Описание',
             'avatar': 'Фото профиля',
             'programming_language': 'Язык программирования',
             'tg_url': 'Telegram',
             'discord_url': 'Discord',
             'github_url': 'Github',
-            'profile_background': 'Фон профиля'
+            'profile_background': 'Фон профиля',
+            'group': 'Группа'
         }
         help_texts = {
             'username': 'Введите имя пользователя.',
             'first_name': 'Введите имя.',
             'last_name': 'Введите фамилию.',
             'year': 'Введите год обучения.',
-            'team': 'Введите команду.',
             'description': 'Введите описание.',
             'avatar': 'Загрузите фото профиля.',
             'programming_language': 'Введите язык программирования.',

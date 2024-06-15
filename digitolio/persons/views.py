@@ -14,11 +14,14 @@ User = get_user_model()
 def persons(request):
     groups = Group.objects.all()
     persons = User.objects.all()
+    languages = [language[1] for language in PROGRAMMING_LANGUAGES]
     persons_projects_data = []
     for person in persons:
+        if person.programming_language:
+            person.programming_language = person.programming_language.capitalize()
         projects = person.projects.all()[:3]
         persons_projects_data.append({'person': person, 'projects': projects, 'groups': groups})
-    return render(request, 'persons/persons.html', context={'persons_projects_data': persons_projects_data})
+    return render(request, 'persons/persons.html', context={'persons_projects_data': persons_projects_data, 'groups': groups, 'languages': languages, 'languages_dict': dict(PROGRAMMING_LANGUAGES)})
 
 
 def profile_view(request, username):

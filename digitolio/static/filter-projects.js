@@ -91,17 +91,17 @@ let tagFilter = document.getElementById('filter1');
 
 languageFilter.addEventListener('change', function() {
     let projectsArray = Array.from(projectsContainer.querySelectorAll('.col'));
+    console.log(projectsArray);
     let language = languageFilter.value;
-    console.log(language);
     projectsArray.forEach(function(item) {
         if (language === 'Выберите язык') {
-            item.style.display = 'block';
+            item.classList.remove('hidden');
         } else {
             let itemLanguage = item.getAttribute('data-language');
             if (itemLanguage !== language) {
-                item.style.display = 'none';
+                item.classList.add('hidden');
             } else {
-                item.style.display = 'block';
+                item.classList.remove('hidden');
             }
         }
     });

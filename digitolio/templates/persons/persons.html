@@ -17,7 +17,7 @@
             padding: 1rem;
             text-align: center;
         }
-
+        
         .avatar-container img, .avatar-container .placeholder {
             border-radius: 24px;
             width: 160px;
@@ -85,7 +85,7 @@
                                         </div>
                                     {% endif %}
                                 </div>
-                                <div class="user-details" style="">
+                                <div class="user-details">
                                     <div class="main-info">
                                         <a class="text-decoration-none text-start" href="{% url 'persons:profile_view' data.person.username %}">
                                             <p class="m-0 text-start" style=" font-size: 20px;">{{ data.person.first_name }}

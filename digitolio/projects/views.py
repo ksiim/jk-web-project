@@ -28,6 +28,7 @@ def create(request):
     context = {
         'form': form,
         'button_name': 'Добавить проект',
+        'title': 'Добавление проекта',
     }
     return render(request, 'projects/create_project.html', context)
 
@@ -45,6 +46,7 @@ def edit_project(request, pk):
     context = {
         'form': form,
         'button_name': 'Сохранить изменения',
+        'title': 'Редактирование проекта',
     }
     return render(request, 'projects/create_project.html', context)
 

@@ -5,12 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание проекта</title>
+    <title>{{ title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'django_select2/django_select2.css' %}"> <!-- Подключаем стили для select2 -->
     <style>
         body {
             margin: 0;
@@ -141,7 +142,7 @@
                             </div>
                         {% endfor %}
                         <div class="form-group text-center">
-                            <button type="submit" class="btn" style="background-color: #2F9286; color: #ffffff; border-radius: 1rem;">Создать проект</button>
+                            <button type="submit" class="btn" style="background-color: #2F9286; color: #ffffff; border-radius: 1rem;">{{ button_name }}</button>
                         </div>
                     </form>
                     {{ form.media.js }}
@@ -208,43 +209,62 @@
     </footer>
     <script>
         $(document).ready(function() {
+            // Инициализация select2
             $('#id_tags').select2({
                 maximumSelectionLength: 2  // Ограничивает количество выборов до 2
+            }).on('select2:select select2:unselect', function() {
+                updatePreviewTags();
             });
-        });
-        function updatePreview(fieldId, fieldValue) {
-            switch (fieldId) {
-                case "id_title":
-                    document.getElementById("title").textContent = fieldValue.length > 40 ? fieldValue.slice(0, 40) + '...' : fieldValue;
-                    break;
-                case "id_description":
-                    document.getElementById("description").textContent = fieldValue.length > 430 ? fieldValue.slice(0, 430) + '...' : fieldValue;
-                    break;
-                case "id_category":
-                    document.getElementById("category").textContent = fieldValue;
-                    break;
-                case "id_programming_language":
-                    document.getElementById("programming_language").textContent = "Язык программирования: " + fieldValue;
-                    break;
-                case "id_link_on_code":
-                    document.getElementById("link_on_code").textContent = fieldValue;
-                    document.getElementById("link_on_code").href = fieldValue;
-                    break;
-                case "id_tags":
-                    const tagsContainer = document.getElementById("tags-container");
-                    tagsContainer.innerHTML = "";
-                    const tags = fieldValue.split(","); // Assuming tags are comma-separated
-                    tags.forEach(tag => {
+    
+            // Функция для обновления предпросмотра полей
+            function updatePreview(fieldId, fieldValue) {
+                switch (fieldId) {
+                    case "id_title":
+                        document.getElementById("title").textContent = fieldValue.length > 0 ? (fieldValue.length > 40 ? fieldValue.slice(0, 40) + '...' : fieldValue) : "Название проекта";
+                        break;
+                    case "id_description":
+                        document.getElementById("description").textContent = fieldValue.length > 0 ? (fieldValue.length > 430 ? fieldValue.slice(0, 430) + '...' : fieldValue) : "Здесь пока ничего нет(((";
+                        break;
+                    case "id_programming_language":
+                        document.getElementById("programming_language").textContent = fieldValue.length > 0 ? "Язык программирования: " + fieldValue : "Язык программирования: Не выбран";
+                        break;
+                    case "id_link_on_code":
+                        document.getElementById("link_on_code").textContent = fieldValue.length > 0 ? fieldValue : "Ссылка не указана";
+                        document.getElementById("link_on_code").href = fieldValue.length > 0 ? fieldValue : "#";
+                        break;
+                }
+            }
+    
+            // Функция для обновления предпросмотра тегов
+            function updatePreviewTags() {
+                const tagsContainer = document.getElementById("tags-container");
+                tagsContainer.innerHTML = "";
+                const selectedTags = $('#id_tags').select2('data');
+                if (selectedTags.length === 0) {
+                    tagsContainer.textContent = "Теги не выбраны(((";
+                } else {
+                    selectedTags.forEach(tag => {
                         const tagElement = document.createElement("span");
                         tagElement.className = "tag-badge";
-                        tagElement.textContent = "#" + tag.trim();
+                        tagElement.textContent = "#" + tag.text;
                         tagsContainer.appendChild(tagElement);
                     });
-                    break;
+                }
             }
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
+    
+            // Инициализация предпросмотра при загрузке страницы
+            function initializePreview() {
+                const fields = ['id_title', 'id_description', 'id_programming_language', 'id_link_on_code'];
+                fields.forEach(fieldId => {
+                    const fieldValue = document.getElementById(fieldId).value;
+                    updatePreview(fieldId, fieldValue);
+                });
+                updatePreviewTags();  // Инициализация тегов
+            }
+    
+            initializePreview();  // Вызов функции инициализации предпросмотра
+    
+            // Добавление обработчиков изменений для полей формы
             {% for field in form %}
                 document.getElementById("{{ field.id_for_label }}").onchange = function() {
                     updatePreview(this.id, this.value);
@@ -252,6 +272,7 @@
             {% endfor %}
         });
     </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

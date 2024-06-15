@@ -2,7 +2,7 @@ let newButton = document.getElementById('new');
 let oldButton = document.getElementById('old');
 let rateButton = document.getElementById('rate');
 
-let projectsContainer = document.getElementById('projects-row')//.querySelectorAll('.col');
+let projectsContainer = document.getElementById('projects-row');
 
 function parseCustomDate(dateString) {
     const months = {
@@ -28,98 +28,85 @@ function parseCustomDate(dateString) {
     return new Date(`${year}-${month}-${day}T${hours}:${minutes}:00`);
 }
 
-newButton.addEventListener('change', function() {
+function applyChanges() {
     let projectsArray = Array.from(projectsContainer.querySelectorAll('.col'));
-    projectsArray.sort(function(a, b) {
-        let dateA = parseCustomDate(a.getAttribute('data-time_created'));
-        let dateB = parseCustomDate(b.getAttribute('data-time_created'));
-        return dateB - dateA;
-    });
-    while (projectsContainer.firstChild) {
-        projectsContainer.removeChild(projectsContainer.firstChild);
-    }
-    
-    // Добавляем отсортированные элементы обратно в контейнер
-    projectsArray.forEach(function(item) {
-        projectsContainer.appendChild(item);
-    });
-});
-
-oldButton.addEventListener('change', function() {
-    let projectsArray = Array.from(projectsContainer.querySelectorAll('.col'));
-    projectsArray.sort(function(a, b) {
-        let dateA = parseCustomDate(a.getAttribute('data-time_created'));
-        let dateB = parseCustomDate(b.getAttribute('data-time_created'));
-        return dateA - dateB;
-    });
-    while (projectsContainer.firstChild) {
-        projectsContainer.removeChild(projectsContainer.firstChild);
-    }
-    
-    // Добавляем отсортированные элементы обратно в контейнер
-    projectsArray.forEach(function(item) {
-        projectsContainer.appendChild(item);
-    });
-});
-
-rateButton.addEventListener('change', function() {
-    let projectsArray = Array.from(projectsContainer.querySelectorAll('.col'));
-    projectsArray.sort(function(a, b) {
-        let intA = parseInt(a.getAttribute('data-grade'));
-        
-        let intB = parseInt(b.getAttribute('data-grade'));
-        if (intA < intB) {
-            return 1;
-        }
-        if (intA > intB) {
-            return -1;
-        }
-        return 0;
-    });
-    while (projectsContainer.firstChild) {
-        projectsContainer.removeChild(projectsContainer.firstChild);
-    }
-    
-    // Добавляем отсортированные элементы обратно в контейнер
-    projectsArray.forEach(function(item) {
-        projectsContainer.appendChild(item);
-    });
-});
-
-let languageFilter = document.getElementById('filter2');
-let tagFilter = document.getElementById('filter1');
-
-languageFilter.addEventListener('change', function() {
-    let projectsArray = Array.from(projectsContainer.querySelectorAll('.col'));
-    console.log(projectsArray);
+    let languageFilter = document.getElementById('filter2');
+    let tagFilter = document.getElementById('filter1');
     let language = languageFilter.value;
-    projectsArray.forEach(function(item) {
-        if (language === 'Выберите язык') {
-            item.classList.remove('hidden');
-        } else {
-            let itemLanguage = item.getAttribute('data-language');
-            if (itemLanguage !== language) {
-                item.classList.add('hidden');
-            } else {
-                item.classList.remove('hidden');
-            }
-        }
-    });
-});
-
-tagFilter.addEventListener('change', function() {
-    let projectsArray = Array.from(projectsContainer.querySelectorAll('.col'));
     let tag = tagFilter.value;
+
     projectsArray.forEach(function(item) {
-        if (tag === 'Выберите тег') {
+        let itemLanguage = item.getAttribute('data-language');
+        let itemTags = item.getAttribute('data-tags').split(', ');
+
+        let dateA = parseCustomDate(item.getAttribute('data-time_created'));
+        let intA = parseInt(item.getAttribute('data-grade'));
+
+        if (language === 'Выберите язык' && tag === 'Выберите тег') {
+            item.classList.remove('hidden');
             item.style.display = 'block';
-        } else {
-            let itemTags = item.getAttribute('data-tags').split(', ');
+        } else if (language === 'Выберите язык') {
             if (!itemTags.includes(tag)) {
+                item.classList.add('hidden');
                 item.style.display = 'none';
             } else {
+                item.classList.remove('hidden');
+                item.style.display = 'block';
+            }
+        } else if (tag === 'Выберите тег') {
+            if (itemLanguage !== language) {
+                item.classList.add('hidden');
+                item.style.display = 'none';
+            } else {
+                item.classList.remove('hidden');
+                item.style.display = 'block';
+            }
+        } else {
+            if (itemLanguage !== language || !itemTags.includes(tag)) {
+                item.classList.add('hidden');
+                item.style.display = 'none';
+            } else {
+                item.classList.remove('hidden');
                 item.style.display = 'block';
             }
         }
     });
-});
+
+    if (newButton.checked) {
+        projectsArray.sort(function(a, b) {
+            let dateA = parseCustomDate(a.getAttribute('data-time_created'));
+            let dateB = parseCustomDate(b.getAttribute('data-time_created'));
+            return dateB - dateA;
+        });
+    } else if (oldButton.checked) {
+        projectsArray.sort(function(a, b) {
+            let dateA = parseCustomDate(a.getAttribute('data-time_created'));
+            let dateB = parseCustomDate(b.getAttribute('data-time_created'));
+            return dateA - dateB;
+        });
+    } else if (rateButton.checked) {
+        projectsArray.sort(function(a, b) {
+            let intA = parseInt(a.getAttribute('data-grade'));
+            let intB = parseInt(b.getAttribute('data-grade'));
+            if (intA < intB) {
+                return 1;
+            }
+            if (intA > intB) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+
+    while (projectsContainer.firstChild) {
+        projectsContainer.removeChild(projectsContainer.firstChild);
+    }
+
+    projectsArray.forEach(function(item) {
+        projectsContainer.appendChild(item);
+    });
+}
+
+let applyButton = document.getElementById('apply-changes');
+
+applyButton.addEventListener('click', applyChanges);

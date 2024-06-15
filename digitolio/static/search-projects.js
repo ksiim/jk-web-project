@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (searchInput && searchButton) {
       searchInput.addEventListener('input', function () {
           var searchTerm = this.value.toLowerCase();
-          var projects = document.querySelectorAll('#projects-row .eshkere');
+          var projects = document.querySelectorAll('#projects-row .col');
 
           projects.forEach(function (project) {
               var title = project.querySelector('.project-title-author p').textContent.toLowerCase();

@@ -13,7 +13,7 @@ def index(request):
     languages = [language[1] for language in PROGRAMMING_LANGUAGES]
     tags = Tag.objects.all()
     projects = Project.objects.all().order_by('-created_at')
-    return render(request, 'projects/index.html', context={'projects': projects, 'languages': languages, 'tags': tags})
+    return render(request, 'projects/index.html', context={'projects': projects, 'languages': languages, 'tags': tags, 'languages_dict': dict(PROGRAMMING_LANGUAGES)})
 
 @login_required
 def create(request):

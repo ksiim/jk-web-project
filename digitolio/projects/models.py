@@ -100,12 +100,13 @@ class Project(models.Model):
     title = models.CharField(max_length=255, verbose_name='Название')
     description = models.TextField(verbose_name='Описание')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects', verbose_name='Автор', null=True)
-    tags = models.ManyToManyField(Tag, blank=True, null=True, verbose_name='Теги')
+    tags = models.ManyToManyField(Tag, blank=True, verbose_name='Теги')
     programming_language = models.TextField(choices=PROGRAMMING_LANGUAGES, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
     # banner = models.CharField(max_length=255)
     link_on_code = models.CharField(max_length=255, verbose_name='Ссылка на гитхаб')
+    grade = models.IntegerField(default=0, verbose_name='Оценка')
     
     class Meta:
         verbose_name = 'Проект'

@@ -1,42 +1,42 @@
+{% load static %}
 <div class='col-md-2 col-lg-2'  style='border-radius: 1rem;'>
     <div class=" p-0 m-0 text-bg-light" style='border-radius: 1rem;'>
         <div class="card-body" style='background-color: #F6F6F6; border-radius: 1rem;'>
             <h5 class="card-title mb-4">Фильтры</h5>
             <form>
                 <div class="form-group mb-3">
-                    <label>Сортировать по</label><br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="filter3" id="option1" value="option1">
-                        <label class="form-check-label" for="option1">Популярное</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="filter3" id="option2" value="option2">
-                        <label class="form-check-label" for="option2">Новое</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="filter3" id="option3" value="option3">
-                        <label class="form-check-label" for="option3">Выбор пользователей</label>
-                    </div>
-                </div>
-                <div class="form-group mb-4">
-                    <label for="filter1">Категория</label>
-                    <select class="form-control" id="filter1">
-                        <option>Выберите опцию</option>
-                        <option>Опция 1</option>
-                        <option>Опция 2</option>
-                        <option>Опция 3</option>
+                    <label for="filter2">Язык</label>
+                    <select class="form-control" id="filter2">
+                        <option>Выберите язык</option>
+                        {% for language in languages %}
+                            <option>{{ language }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="filter2">Язык</label>
-                    <select class="form-control" id="filter2">
-                        <option>Выберите опцию</option>
-                        <option>Опция 1</option>
-                        <option>Опция 2</option>
-                        <option>Опция 3</option>
+                    <label for="filter1">Тег</label>
+                    <select class="form-control" id="filter1">
+                        <option>Выберите тег</option>
+                        {% for tag in tags %}
+                            <option>{{ tag }}</option>
+                        {% endfor %}
                     </select>
                 </div>
-                <button type="submit" style='background-color: #BBE4F5;' class="btn">Применить изменения</button>
+                <div class="form-group mb-3">
+                    <label>Сортировать по</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="filter3" id="new" value="new">
+                        <label class="form-check-label" for="new">Новое</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="filter3" id="old" value="old">
+                        <label class="form-check-label" for="old">Старое</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="filter3" id="rate" value="rate">
+                        <label class="form-check-label" for="rate">Выше оценка</label>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

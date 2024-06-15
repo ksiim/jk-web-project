@@ -73,6 +73,11 @@
         {% include 'includes/footer_base.html' %}
     </footer>
     <script>
+        $(document).ready(function() {
+            $('#id_tags').select2({
+                maximumSelectionLength: 2  // Ограничивает количество выборов до 2
+            });
+        });
         function updatePreview(fieldId, fieldValue) {
           const previewElementId = fieldId.replace(/-[a-z]+$/, ""); // Extract field name from ID
           const previewElement = document.getElementById(previewElementId);

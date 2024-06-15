@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model, logout, login
 
+from .models import *
 from .forms import CustomUserCreationForm, CustomUserUpdateForm
 
 
@@ -11,11 +12,12 @@ User = get_user_model()
 
 
 def persons(request):
+    groups = Group.objects.all()
     persons = User.objects.all()
     persons_projects_data = []
     for person in persons:
         projects = person.projects.all()[:3]
-        persons_projects_data.append({'person': person, 'projects': projects})
+        persons_projects_data.append({'person': person, 'projects': projects, 'groups': groups})
     return render(request, 'persons/persons.html', context={'persons_projects_data': persons_projects_data})
 
 

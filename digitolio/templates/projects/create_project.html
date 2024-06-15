@@ -207,6 +207,11 @@
         {% include 'includes/footer_base.html' %}
     </footer>
     <script>
+        $(document).ready(function() {
+            $('#id_tags').select2({
+                maximumSelectionLength: 2  // Ограничивает количество выборов до 2
+            });
+        });
         function updatePreview(fieldId, fieldValue) {
             switch (fieldId) {
                 case "id_title":

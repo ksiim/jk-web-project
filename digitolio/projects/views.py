@@ -28,9 +28,36 @@ def create(request):
     context = {
         'form': form,
         'button_name': 'Добавить проект',
+        'title': 'Добавление проекта',
     }
     return render(request, 'projects/create_project.html', context)
 
+
+@login_required
+def edit_project(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    if request.method == "POST":
+        form = ProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('projects:project_detail', pk=pk)
+    else:
+        form = ProjectForm(instance=project)
+    context = {
+        'form': form,
+        'button_name': 'Сохранить изменения',
+        'title': 'Редактирование проекта',
+    }
+    return render(request, 'projects/create_project.html', context)
+
+@login_required
+@csrf_exempt
+def delete_project(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    if request.method == "POST":
+        project.delete()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False}, status=400)
 
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)

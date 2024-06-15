@@ -292,7 +292,7 @@
         fetch('/project_data/' + projectId)
             .then(response => response.json())
             .then(project => {
-                document.getElementById('modal-title').textContent = project.title.length > 40 ? project.title.slice(0, 55) + '...' : project.title;
+                document.getElementById('modal-title').textContent = project.title.length > 40 ? project.title.slice(0, 40) + '...' : project.title;
                 document.getElementById('modal-description').textContent = project.description.length > 430 ? project.description.slice(0, 430) + '...' : project.description;
                 document.getElementById('modal-programming-language').textContent = 'Язык программирования: ' + project.programming_language;
                 document.getElementById('modal-date-added').textContent = 'Дата добавления: ' + project.created_at;

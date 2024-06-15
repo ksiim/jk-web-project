@@ -6,7 +6,9 @@ from .models import Project, Tag
 class ProjectForm(forms.ModelForm):
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(),
-        widget=Select2MultipleWidget(attrs={'data-placeholder': 'Выберите теги', 'style': 'width: 100%'}),
+        widget=Select2MultipleWidget(attrs={
+            'data-placeholder': 'Выберите теги',
+            'style': 'width: 100%;  border-radius: 1rem; border-color: #2F9286;'}),
         label='Теги'
     )
     class Meta:

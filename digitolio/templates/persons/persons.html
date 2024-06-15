@@ -12,27 +12,20 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <style>
         .user-card {
-            background-color: #FFFFFF;
             width: 235px;
             height: 350px;
-            border-radius: 1rem;
             padding: 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
             text-align: center;
-        }
-
-        .user-card:hover {
-            transform: scale(1.05);
         }
 
         .avatar-container img, .avatar-container .placeholder {
             border-radius: 24px;
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             object-fit: cover;
             align-items: center;
             justify-content: center;
+            margin-bottom: 1rem;
         }
 
         .avatar-container .placeholder {
@@ -45,8 +38,21 @@
         .user-details {
             margin: 0 auto;
             width: 150px;
-            margin-top: 1rem;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 47%;
         }
+
+        .main-info a {
+            color: #113739;
+        }
+        .main-info a:hover {
+            cursor: pointer;
+            color: #2F9286;
+        }
+
     </style>
 </head>
 <body>
@@ -69,30 +75,36 @@
                     {% for data in persons_projects_data %}
                     <div class="row row-cols-auto g-4 mb-4">
                         <div class="col mb-3">
-                            <a class='text-decoration-none' style="color: black;" href="{% url 'persons:profile_view' data.person.username %}">
-                                <div class='user-card'>
-                                    <div class="text-center">
-                                        <div class="avatar-container d-flex justify-content-center">
-                                            {% if data.person.avatar %}
-                                                <img src="{{ data.person.avatar.url }}" alt="Аватар" class="user-avatar">
-                                            {% else %}
-                                                <div class="placeholder">
-                                                    Нет фотографии
-                                                </div>
-                                            {% endif %}
+                            <div class='user-card'>
+                                <div class="avatar-container d-flex justify-content-center">
+                                    {% if data.person.avatar %}
+                                        <img src="{{ data.person.avatar.url }}" alt="Аватар" class="user-avatar">
+                                    {% else %}
+                                        <div class="placeholder">
+                                            Нет фотографии
                                         </div>
-                                        <div class="user-details">
-                                            <p class="m-0 text-start" style="color: #113739; font-size: 20px;">{{ data.person.first_name }}
-                                            <p class="m-0 text-start" style="color: #113739; font-size: 20px;">{{ data.person.last_name }}</p>
-                                            <a class="text-decoration-none text-start" href="{% url 'persons:profile_view' data.person.username %}">
-                                                {{ data.person.username }}
-                                            </a>
-                                            <p class="m-0">Группа: {{ data.person.team }}</p>
-                                            <p class="m-0">Год обучения: {{ data.person.year }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="user-details" style="">
+                                    <div class="main-info">
+                                        <a class="text-decoration-none text-start" href="{% url 'persons:profile_view' data.person.username %}">
+                                            <p class="m-0 text-start" style=" font-size: 20px;">{{ data.person.first_name }}
+                                            <p class="m-0 text-start" style=" font-size: 20px;">{{ data.person.last_name }}</p>
+                                            <p class="m-0 text-start">{{ data.person.username }}</p>
+                                        </a>
+                                    </div>
+                                    <div class="additional-info">
+                                        <div class="d-flex justify-content-between" style="border-bottom: 2px solid #2F9286;">
+                                            <span class="m-0" style="color: #2F9286; font-size: 14px;">Группа</span>
+                                            <span class="m-0" style="color: #2F9286; font-size: 14px;">{{ data.person.team }}</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span class="m-0" style="color: #2F9286; font-size: 14px;">Год обучения</span>
+                                            <span class="m-0" style="color: #2F9286; font-size: 14px;">{{ data.person.year }}</span>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                             {% for project in data.projects %}
                             <div class="col">

@@ -34,7 +34,7 @@ def create(request):
 
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
-    return render(request, 'projects/project_detail.html', {'project': project})
+    return render(request, 'projects/project_full.html', {'project': project})
 
 def project_data(request, project_id):
     project = get_object_or_404(Project, id=project_id)
@@ -42,8 +42,12 @@ def project_data(request, project_id):
         'id': project.id,
         'title': project.title,
         'description': project.description,
-        'author': project.author.username,
-        'tags': project.tags.all(),
+        'author_full_name': str(project.author.get_full_name()),
+        'author_username': project.author.username,
+        'author_avatar': project.author.avatar.url if project.author.avatar else '',
+        'author_profile_background': project.author.profile_background,
+        'created_at': project.created_at.strftime('%d.%m.%Y'),
+        'tags': list(project.tags.values_list('name', flat=True)),
         'programming_language': project.get_programming_language_display(),
         'link_on_code': project.link_on_code,
     }

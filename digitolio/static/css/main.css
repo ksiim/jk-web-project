@@ -10,6 +10,10 @@ body {
     padding: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 .form-control {
     border-color: #2f9286;
 }

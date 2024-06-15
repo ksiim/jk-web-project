@@ -11,26 +11,26 @@ body {
 }
 
 .form-control {
-    border-color: #2F9286;
+    border-color: #2f9286;
 }
 
 .form-control:focus {
     outline: none;
     box-shadow: none;
-    border-color: #6AC3BE;  
+    border-color: #22786e;  
 }
 
 /* Изменение фона и текста автозаполнения */
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #6AC3BE inset;
+    -webkit-box-shadow: 0 0 0px 1000px #2f928731 inset;
 }
 
 /* Изменение фона автозаполнения при получении фокуса */
 input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px #6AC3BE inset;
+    -webkit-box-shadow: 0 0 0px 1000px #2f928776 inset;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #2F9286;
     opacity: 1; /* Firefox */
 }

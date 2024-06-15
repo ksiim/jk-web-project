@@ -1,13 +1,11 @@
 .change-form select.django-select2 {
   width: 30em;
 }
-/* Стили для django-select2 */
 .select2-container .select2-selection--multiple {
   border: 1px solid #2F9286;
   border-radius: 1rem;
 }
 
-/* Выбранные элементы */
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
   background-color: #6CBFB5;
   border: 1px solid #6CBFB5;
@@ -73,28 +71,17 @@
   color: white;
 }
 
-
-
-
-
-
-/* Выбранный элемент в состоянии focus (если это необходи
-/* Поле поиска внутри выпадающего списка */
 .select2-container--default .select2-search--dropdown .select2-search__field {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #2F9286;
-  /* border-radius: 1rem; */
 }
 
-/* Плейсхолдер для поля поиска */
 .select2-container--default .select2-search--dropdown .select2-search__field::placeholder {
   color: #6CBFB5;
 }
 
-/* Прокрутка для длинного списка */
 .select2-container--default .select2-results__options {
   max-height: 100px;
   overflow-y: auto;
-  /* border-radius: 1rem; */
 }

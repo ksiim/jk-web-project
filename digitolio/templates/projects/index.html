@@ -31,9 +31,13 @@
                 <div id="projects-list" class="container p-4" style='background-color: #F6F6F6; border-radius: 1rem;'>
                     <div id="projects-row" class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
                         {% for project in projects %}
-                            <div class="col" data-time_created="{{project.created_at}}" data-grade="{{project.grade}}" data-language="{{project.programming_language}}" data-tags="{{project.tags.all|join:", "}}">
-                                {% include "projects/includes/new_project_small.html" with project=project %}
-                            </div>
+                            {% for language in languages_dict.items %}
+                                {% if project.programming_language == language.0 %}
+                                <div class="col" data-time_created="{{project.created_at}}" data-grade="{{project.grade}}" data-language="{{language.1}}" data-tags="{{project.tags.all|join:", "}}">
+                                    {% include "projects/includes/new_project_small.html" with project=project %}
+                                </div>
+                                {% endif %}
+                            {% endfor %}
                         {% endfor %}
                     </div>
                 </div>

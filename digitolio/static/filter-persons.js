@@ -75,6 +75,12 @@ function applyChanges() {
         usersArray.forEach(function(item) {
             usersContainer.appendChild(item);
         });
+        if (usersArray.length === usersContainer.querySelectorAll('.hidden').length) {
+            let noResults = document.createElement('div');
+            noResults.classList.add('text-center', 'w-100');
+            noResults.textContent = 'Нет результатов';
+            usersContainer.appendChild(noResults);
+        }
     });
 }
 

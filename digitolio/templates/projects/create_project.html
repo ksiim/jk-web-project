@@ -214,7 +214,12 @@
         $(document).ready(function() {
             // Инициализация select2
             $('#id_tags').select2({
-                maximumSelectionLength: 2  // Ограничивает количество выборов до 2
+                maximumSelectionLength: 2,
+                language: {
+                    maximumSelected: function (args) {
+                        return "Вы можете выбрать только два тега.";
+                    }
+                }  // Ограничивает количество выборов до 2
             }).on('select2:select select2:unselect', function() {
                 updatePreviewTags();
             });

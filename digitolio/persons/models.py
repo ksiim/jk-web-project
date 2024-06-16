@@ -30,7 +30,7 @@ class Person(AbstractUser):
     tg_url = models.CharField(max_length=50, null=True, blank=True, verbose_name='Telegram')
     discord_url = models.CharField(max_length=50, null=True, blank=True, verbose_name='Discord')
     github_url = models.CharField(max_length=50, null=True, blank=True, verbose_name='Github')
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, verbose_name='Группa')
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, verbose_name='Группa', null=True)
     
     groups = models.ManyToManyField(
         'auth.Group',

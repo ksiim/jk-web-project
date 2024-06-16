@@ -36,6 +36,9 @@ function applyChanges() {
     let tag = tagFilter.value;
 
     projectsArray.forEach(function(item) {
+        if (item.classList.contains('no-projects')) {
+            return;
+        }
         let itemLanguage = item.getAttribute('data-language');
         let itemTags = item.getAttribute('data-tags').split(', ');
 
@@ -101,10 +104,25 @@ function applyChanges() {
     while (projectsContainer.firstChild) {
         projectsContainer.removeChild(projectsContainer.firstChild);
     }
-
+    
+    
     projectsArray.forEach(function(item) {
         projectsContainer.appendChild(item);
     });
+    
+    if (projectsArray.length === projectsContainer.querySelectorAll('.hidden').length) {
+        let noProjects = document.createElement('div');
+        noProjects.classList.add('col');
+        noProjects.classList.add('no-projects');
+        noProjects.textContent = 'Нет проектов по заданным параметрам';
+        projectsContainer.appendChild(noProjects);
+    } else {
+        let noProjects = projectsContainer.querySelector('.no-projects');
+        console.log(noProjects);
+        if (noProjects) {
+            projectsContainer.removeChild(noProjects);
+        }
+    }
 }
 
 let applyButton = document.getElementById('apply-changes');

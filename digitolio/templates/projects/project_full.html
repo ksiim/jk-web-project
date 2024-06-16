@@ -29,6 +29,9 @@
             object-fit: cover;
             position: relative;
             margin-bottom: 24px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .avatar {
@@ -160,7 +163,7 @@
                 <div class="project-card">
                     <div class="background-image" style="background-image: url('{% static "img/backgrounds/" %}{{ project.author.profile_background }}');">
                         {% if user.avatar %}
-                            <img src="{{ user.avatar.url }}" alt="Аватар" class="avatar">
+                            <img src="{{ project.author.avatar.url }}" alt="Аватар" class="avatar">
                         {% else %}
                             <div class="placeholder">
                                 Нет фотографии

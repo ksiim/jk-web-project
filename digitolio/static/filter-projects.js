@@ -118,7 +118,6 @@ function applyChanges() {
         projectsContainer.appendChild(noProjects);
     } else {
         let noProjects = projectsContainer.querySelector('.no-projects');
-        console.log(noProjects);
         if (noProjects) {
             projectsContainer.removeChild(noProjects);
         }

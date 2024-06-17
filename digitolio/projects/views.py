@@ -7,7 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import JsonResponse
 from django.db.models import Q
-from django.forms.models import model_to_dict
 
 def index(request):
     languages = [language[1] for language in PROGRAMMING_LANGUAGES]
@@ -61,7 +60,11 @@ def delete_project(request, pk):
 
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
-    return render(request, 'projects/project_full.html', {'project': project})
+    if request.method == 'POST':
+        project = get_object_or_404(Project, pk=pk)
+        project.grade = request.POST.get('grade')
+        project.save()
+    return render(request, 'projects/project_full.html', {'project': project, 'admin': request.user.is_authenticated and request.user.role == 'teacher'})
 
 def project_data(request, project_id):
     project = get_object_or_404(Project, id=project_id)

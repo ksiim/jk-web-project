@@ -6,7 +6,7 @@
             <form>
                 <div class="form-group mb-3">
                     <label for="filter2">Язык</label>
-                    <select class="form-control" id="filter2">
+                    <select class="form-control rounded-pill" id="filter2">
                         <option>Выберите язык</option>
                         {% for language in languages %}
                             <option>{{ language }}</option>
@@ -15,14 +15,14 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="filter1">Тег</label>
-                    <select class="form-control" id="filter1">
+                    <select class="form-control rounded-pill" id="filter1">
                         <option>Выберите тег</option>
                         {% for tag in tags %}
                             <option>{{ tag }}</option>
                         {% endfor %}
                     </select>
                 </div>
-                <div class="form-group mb-3">
+                <div class="form-group mb-3" style="background-color: #8DD3CB; padding: 15px; border-radius: 30px; color: white;">
                     <label>Сортировать по</label><br>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="filter3" id="new" value="new">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </form>
-            <button type="submit" style='background-color: #F6F6F6;' class="btn" id="apply-changes">Применить изменения</button>
+            <button type="submit" style='background-color: #2F9286; color: white; border-radius: 15px;' class="btn" id="apply-changes">Применить изменения</button>
         </div>
     </div>
 </div>

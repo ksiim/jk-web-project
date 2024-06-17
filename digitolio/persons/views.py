@@ -13,7 +13,7 @@ User = get_user_model()
 
 def persons(request):
     groups = Group.objects.all()
-    persons = User.objects.all()
+    persons = [user for user in User.objects.all() if user.role == 'student']
     languages = [language[1] for language in PROGRAMMING_LANGUAGES]
     persons_projects_data = []
     for person in persons:

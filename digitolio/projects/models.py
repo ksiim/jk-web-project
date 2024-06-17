@@ -104,9 +104,8 @@ class Project(models.Model):
     programming_language = models.TextField(choices=PROGRAMMING_LANGUAGES, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    # banner = models.CharField(max_length=255)
     link_on_code = models.CharField(max_length=255, verbose_name='Ссылка на гитхаб')
-    grade = models.IntegerField(default=0, verbose_name='Оценка')
+    grade = models.IntegerField(null=True, verbose_name='Оценка')
     
     class Meta:
         verbose_name = 'Проект'

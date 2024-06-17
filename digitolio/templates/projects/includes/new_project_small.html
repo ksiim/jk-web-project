@@ -229,7 +229,13 @@
                 {% endfor %}
             </div>
             <div class="rating-container">
-                <p style="color: #377275; font-size: 12px; font-weight: regular;">+11 б.</p>
+                <p style="color: #377275; font-size: 12px; font-weight: regular;">
+                    {% if project.grade %}
+                    {{project.grade}} б.
+                    {% else %}
+                    Нет
+                    {% endif %}
+                </p>
             </div>
         </div>
     </div>
@@ -296,7 +302,7 @@
                     document.getElementById('modal-description-' + projectId).textContent = project.description.length > 430 ? project.description.slice(0, 430) + '...' : project.description;
                     document.getElementById('modal-programming-language-' + projectId).textContent = 'Язык программирования: ' + project.programming_language;
                     document.getElementById('modal-date-added-' + projectId).textContent = 'Дата добавления: ' + project.created_at;
-                    document.getElementById('modal-rating-' + projectId).textContent = '+11 б.';
+                    document.getElementById('modal-rating-' + projectId).textContent = project.grade ? project.grade + ' б.' : 'Нет оценки';
                     document.getElementById('modal-link-on-code-' + projectId).href = project.link_on_code;
                     document.getElementById('modal-link-on-code-' + projectId).textContent = project.link_on_code;
                     

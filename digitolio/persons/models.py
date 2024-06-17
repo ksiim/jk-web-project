@@ -9,6 +9,14 @@ PROGRAMMING_LANGUAGES = [
     ("csharp", "C#")
 ]
 
+STUDENT = 'student'
+TEACHER = 'teacher'
+
+USER_ROLES = [
+    (STUDENT, 'Студент'),
+    (TEACHER, 'Преподаватель')
+]
+
 def get_background_image_choices():
     bg_dir = os.path.join('static', 'img', 'backgrounds')
     backgrounds = [(f, f) for f in os.listdir(bg_dir) if os.path.isfile(os.path.join(bg_dir, f))]
@@ -31,6 +39,7 @@ class Person(AbstractUser):
     discord_url = models.CharField(max_length=50, null=True, blank=True, verbose_name='Discord')
     github_url = models.CharField(max_length=50, null=True, blank=True, verbose_name='Github')
     group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, verbose_name='Группa', null=True)
+    role = models.CharField(max_length=30, choices=USER_ROLES, default=STUDENT, verbose_name='Роль')
     
     groups = models.ManyToManyField(
         'auth.Group',

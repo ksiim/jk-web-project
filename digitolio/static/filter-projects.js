@@ -89,6 +89,11 @@ function applyChanges() {
         });
     } else if (rateButton.checked) {
         projectsArray.sort(function(a, b) {
+            if (a.getAttribute('data-grade') === "None") {
+                return 1;
+            } else if (b.getAttribute('data-grade') === "None") {
+                return -1;
+            };
             let intA = parseInt(a.getAttribute('data-grade'));
             let intB = parseInt(b.getAttribute('data-grade'));
             if (intA < intB) {

@@ -1,8 +1,22 @@
+from datetime import datetime
 from .models import Person
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-
+class CustomUserAuthenticationForm(AuthenticationForm):
+    class Meta:
+        model = Person
+        fields = [
+            'username', 'password'
+        ]
+        labels = {
+            'username': 'Никнейм',
+            'password': 'Пароль'
+        }
+        help_texts = {
+            'username': 'Введите никнейм.',
+            'password': 'Введите пароль.'
+        }
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -12,6 +26,22 @@ class CustomUserCreationForm(UserCreationForm):
             'last_name', 'email', 'password1',
             'password2'
         ]
+        lables = {
+            'username': 'Никнейм',
+            'first_name': 'Имя',
+            'last_name': 'Фамилия',
+            'email': 'Email',
+            'password1': 'Пароль',
+            'password2': 'Повторите пароль'
+        }
+        help_texts = {
+            'username': 'Введите никнейм.',
+            'first_name': 'Введите имя.',
+            'last_name': 'Введите фамилию.',
+            'email': 'Введите email.',
+            'password1': 'Введите пароль.',
+            'password2': 'Повторите пароль.'
+        }
 
 class CustomUserUpdateForm(forms.ModelForm):
     class Meta:
@@ -39,7 +69,7 @@ class CustomUserUpdateForm(forms.ModelForm):
             'group': 'Группа'
         }
         help_texts = {
-            'username': 'Введите имя пользователя.',
+            'username': 'Введите никнейм.',
             'first_name': 'Введите имя.',
             'last_name': 'Введите фамилию.',
             'year': 'Введите год обучения.',
@@ -51,3 +81,14 @@ class CustomUserUpdateForm(forms.ModelForm):
             'github_url': 'Введите ссылку на свой Github.',
             'profile_background': 'Выберите фон профиля.'
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['readonly'] = True
+
+    def clean_year(self):
+        year = self.cleaned_data['year']
+        current_year = datetime.now().year
+        if year > current_year:
+            raise forms.ValidationError("Год обучения не может быть больше текущего года.")
+        return year

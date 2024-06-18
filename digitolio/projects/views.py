@@ -78,6 +78,7 @@ def project_data(request, project_id):
         'author_profile_background': project.author.profile_background,
         'created_at': project.created_at.strftime('%d.%m.%Y'),
         'tags': list(project.tags.values_list('name', flat=True)),
+        'grade': project.grade,
         'programming_language': project.get_programming_language_display(),
         'link_on_code': project.link_on_code,
     }

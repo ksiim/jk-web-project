@@ -221,8 +221,6 @@
                             <a class="link_on_code" href="{{ project.link_on_code }}">{{ project.link_on_code }}</a>
                         </div>
                         {% if admin == True %}
-                            {% if project.grade %}
-                            {% else %}
                             <form class="align-items-center" style="display: grid;" method="post">
                                 {% csrf_token %}
                                 <input class="form-control w-100 rounded" type="number" name="grade" min="0" max="100" required placeholder="Введите оценку (0-100)">
@@ -230,7 +228,6 @@
                                     Оценить проект
                                 </button>
                             </form>
-                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

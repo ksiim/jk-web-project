@@ -27,6 +27,10 @@ class Group(models.Model):
     
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = "Группа"
+        verbose_name_plural = "Группы"
 
 class Person(AbstractUser):
     password = models.CharField(max_length=255, verbose_name='Пароль')
@@ -59,3 +63,5 @@ class Person(AbstractUser):
 
     class Meta:
         ordering = ['-date_joined']
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"

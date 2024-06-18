@@ -8,7 +8,7 @@ from projects.models import Tag, TAGS
 from persons.models import Group
 
 for tag_code, tag_name in TAGS:
-    Tag.objects.get_or_create(name=tag_code)  # Создаем тег, если он еще не существует
+    Tag.objects.get_or_create(name=tag_code)
 
 [Group.objects.get_or_create(name=f"AT-{number:02}") for number in range(1, 10)]
 

@@ -38,7 +38,7 @@ class Person(AbstractUser):
     tg_url = models.CharField(max_length=50, null=True, blank=True, verbose_name='Telegram')
     discord_url = models.CharField(max_length=50, null=True, blank=True, verbose_name='Discord')
     github_url = models.CharField(max_length=50, null=True, blank=True, verbose_name='Github')
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, verbose_name='Группa', null=True)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name='Группa', null=True, blank=True)
     role = models.CharField(max_length=30, choices=USER_ROLES, default=STUDENT, verbose_name='Роль')
     
     groups = models.ManyToManyField(

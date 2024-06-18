@@ -9,7 +9,7 @@ urlpatterns = [
     path('update/<str:username>', views.profile_update_view, name='profile_update'),
     path('logout/', views.person_logout, name='logout'),
     path('login/', LoginView.as_view(template_name='persons/login.html', form_class=CustomUserAuthenticationForm), name='login'),
-    path('signup/', views.SignUp.as_view(), name='signup'),
+    path('signup/', views.sign_up, name='signup'),
     path('', views.persons, name='persons'),
     path('<str:username>/', views.profile_view, name='profile_view'),
 ]

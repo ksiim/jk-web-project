@@ -175,7 +175,7 @@
             <div class="col-md-8">
                 <div class="project-card">
                     <div class="background-image" style="background-image: url('{% static "img/backgrounds/" %}{{ project.author.profile_background }}');">
-                        {% if user.avatar %}
+                        {% if project.author.avatar %}
                             <img src="{{ project.author.avatar.url }}" alt="Аватар" class="avatar">
                         {% else %}
                             <div class="placeholder">

@@ -6,7 +6,8 @@ let languageForm = document.getElementById('filter3');
 let usersContainer = document.querySelector('.container .p-4');
 
 function applyChanges() {
-    let usersArray = Array.from(usersContainer.querySelectorAll('.row'));
+    let usersArray = Array.from(usersContainer.querySelectorAll('.row row-cols-auto'));
+    console.log(usersArray);
     let group = groupForm.value;
     let language = languageForm.value;
 

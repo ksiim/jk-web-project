@@ -11,117 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'django_select2/django_select2.css' %}"> <!-- Подключаем стили для select2 -->
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        .project-card {
-            background-color: #FFFFFF;
-            border-radius: 20px;
-            padding: 24px;
-            margin: auto;
-        }
-
-        .background-image {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            position: relative;
-            margin-bottom: 24px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-        }
-
-        .placeholder {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background-color: #fff;
-        }
-
-        .author-details {
-            position: absolute;
-            bottom: 10px;
-            left: 120px;
-            color: #113739;
-        }
-
-        .project-details {
-            background-color: #fff;
-        }
-
-        .tag-badge {
-            margin: 0;
-            display: inline-block;
-            padding: 2px 4px;
-            color: white;
-            font-size: 12px;
-            background-color: #6CBFB5;
-            border-radius: 0.5rem;
-            margin: 2px;
-        }
-
-        .link_on_code {
-            text-decoration: none;
-            color: #377275;
-        }
-        
-        .link_on_code:hover {
-            color: #113739;
-        }
-
-        .author-details a {
-            color: #113739;
-            text-decoration: none;
-        }
-
-        .author-details a:hover {
-            color: #377275;
-        }
-
-        .description, .link_on_code {
-            word-wrap: break-word;
-        }
-
-        .top-right-images {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .top-right-images .circle {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/create_project.css' %}">
+    <link rel="stylesheet" href="{% static 'django_select2/django_select2.css' %}">
 </head>
 <body>
     <header>
@@ -212,19 +103,17 @@
     </footer>
     <script>
         $(document).ready(function() {
-            // Инициализация select2
             $('#id_tags').select2({
                 maximumSelectionLength: 2,
                 language: {
                     maximumSelected: function (args) {
                         return "Вы можете выбрать только два тега.";
                     }
-                }  // Ограничивает количество выборов до 2
+                }
             }).on('select2:select select2:unselect', function() {
                 updatePreviewTags();
             });
-    
-            // Функция для обновления предпросмотра полей
+
             function updatePreview(fieldId, fieldValue) {
                 switch (fieldId) {
                     case "id_title":
@@ -242,8 +131,7 @@
                         break;
                 }
             }
-    
-            // Функция для обновления предпросмотра тегов
+
             function updatePreviewTags() {
                 const tagsContainer = document.getElementById("tags-container");
                 tagsContainer.innerHTML = "";
@@ -259,20 +147,16 @@
                     });
                 }
             }
-    
-            // Инициализация предпросмотра при загрузке страницы
+
             function initializePreview() {
                 const fields = ['id_title', 'id_description', 'id_programming_language', 'id_link_on_code'];
                 fields.forEach(fieldId => {
                     const fieldValue = document.getElementById(fieldId).value;
                     updatePreview(fieldId, fieldValue);
                 });
-                updatePreviewTags();  // Инициализация тегов
+                updatePreviewTags();
             }
-    
-            initializePreview();  // Вызов функции инициализации предпросмотра
-    
-            // Добавление обработчиков изменений для полей формы
+            initializePreview();
             {% for field in form %}
                 document.getElementById("{{ field.id_for_label }}").onchange = function() {
                     updatePreview(this.id, this.value);
@@ -280,7 +164,7 @@
             {% endfor %}
         });
     </script>
-    
+    <script src="{% static 'js/modal_script.js' %}"></script>s
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

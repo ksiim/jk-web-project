@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/project_small_modal.css' %}" rel="stylesheet">
     <style>
         header {
             background-image: url("{% if user.profile_background %}{% static 'img/backgrounds/' %}{{ user.profile_background }}{% else %}{% static 'img/backgrounds/profile_background.png' %}{% endif %}");

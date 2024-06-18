@@ -88,6 +88,8 @@ class CustomUserUpdateForm(forms.ModelForm):
 
     def clean_year(self):
         year = self.cleaned_data['year']
+        if (year is None) or (year == ''):
+            raise forms.ValidationError("Поле год обучения не может быть пустым.")
         current_year = datetime.now().year
         if year > current_year:
             raise forms.ValidationError("Год обучения не может быть больше текущего года.")

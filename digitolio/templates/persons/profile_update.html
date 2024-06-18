@@ -12,62 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="{% static 'css/main.css' %}" rel="stylesheet">
-  <style>
-    .avatar-container {
-      position: relative;
-      display: inline-block;
-    }
-    .avatar-container input[type="file"] {
-      display: none;
-    }
-    .avatar-container img, .avatar-container .placeholder {
-      cursor: pointer;
-      border-radius: 1rem;
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-    }
-    .avatar-container .placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px dashed #ccc;
-    }
-    .background-thumbnail {
-      cursor: pointer;
-      width: 200px;
-      height: 100px;
-      object-fit: cover;
-      border: 2px solid transparent;
-      border-radius: 1rem;
-    }
-    .background-thumbnail.selected {
-      border-color: #2F9286;
-    }
-    .background-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 10px;
-      margin-top: 20px;
-      justify-items: center;
-    }
-    .background-grid img {
-      cursor: pointer;
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border: 2px solid transparent;
-      border-radius: 1rem;
-    }
-    .background-grid img.selected {
-      border-color: #2F9286;
-    }
-    .modal-body .background-grid img {
-      border-radius: 1rem;
-      max-width: 100%;
-      max-height: 100%;
-    }
-  </style>
+  <link href="{% static 'css/profile_update.css' %}" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -144,8 +89,6 @@
   <footer>
     {% include 'includes/footer_base.html' %}
   </footer>
-
-  <!-- Modal for selecting profile background -->
   <div class="modal fade" id="backgroundModal" tabindex="-1" aria-labelledby="backgroundModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -165,49 +108,7 @@
       </div>
     </div>
   </div>
-
+  <script src="{% static 'js/profile-update.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script>
-    function previewAvatar(event) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = function() {
-        const imgElement = document.getElementById('avatarPreview');
-        const placeholderElement = document.getElementById('avatarPlaceholder');
-        if (imgElement) {
-          imgElement.src = reader.result;
-        } else if (placeholderElement) {
-          placeholderElement.innerHTML = `<img src="${reader.result}" alt="Аватар" id="avatarPreview" class="img-fluid">`;
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const bgOptions = document.querySelectorAll('.bg-option');
-      const bgModalOptions = document.querySelectorAll('.bg-option-modal');
-      const currentBgThumbnail = document.querySelector('.background-thumbnail');
-
-      bgOptions.forEach(option => {
-        option.addEventListener('click', function () {
-          bgOptions.forEach(opt => opt.classList.remove('selected'));
-          this.classList.add('selected');
-          document.getElementById('id_profile_background').value = this.dataset.bg;
-        });
-      });
-
-      bgModalOptions.forEach(option => {
-        option.addEventListener('click', function () {
-          bgModalOptions.forEach(opt => opt.classList.remove('selected'));
-          this.classList.add('selected');
-          document.getElementById('id_profile_background').value = this.dataset.bg;
-          currentBgThumbnail.src = this.src;
-          var myModalEl = document.getElementById('backgroundModal');
-          var modal = bootstrap.Modal.getInstance(myModalEl);
-          modal.hide();
-        });
-      });
-    });
-  </script>
 </body>
 </html>

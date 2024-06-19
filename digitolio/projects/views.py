@@ -1,12 +1,14 @@
-from django.shortcuts import get_object_or_404, render
-from .models import Project, PROGRAMMING_LANGUAGES, Tag
-from .forms import ProjectForm
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
 import json
+
+from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.db.models import Q
+
+from .models import Project, PROGRAMMING_LANGUAGES, Tag
+from .forms import ProjectForm
+
 
 def index(request):
     languages = [language[1] for language in PROGRAMMING_LANGUAGES]

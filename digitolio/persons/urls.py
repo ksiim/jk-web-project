@@ -1,7 +1,9 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView
+
 from . import views
 from .forms import CustomUserAuthenticationForm
+
 
 app_name = 'persons'
 

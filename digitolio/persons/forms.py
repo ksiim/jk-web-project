@@ -1,7 +1,9 @@
 from datetime import datetime
-from .models import Person
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
+from .models import Person
+
 
 class CustomUserAuthenticationForm(AuthenticationForm):
     class Meta:

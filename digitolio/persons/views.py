@@ -23,19 +23,21 @@ def persons(request):
         persons_projects_data.append({'person': person, 'projects': projects, 'groups': groups})
     return render(request, 'persons/persons.html', context={'persons_projects_data': persons_projects_data, 'groups': groups, 'languages': languages, 'languages_dict': dict(PROGRAMMING_LANGUAGES)})
 
-
 def profile_view(request, username):
     user = get_object_or_404(User, username=username)
     return render(request, 'persons/profile.html', {'user': user})
 
-class SignUp(CreateView):
-    form_class = CustomUserCreationForm
-    success_url = reverse_lazy('persons:persons')
-    template_name = 'persons/registration.html'
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        login(self.request, self.object)
-        return response
+def sign_up(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect(reverse_lazy('persons:persons'))
+    else:
+        form = CustomUserCreationForm()
+    
+    return render(request, 'persons/registration.html', {'form': form})
 
 
 @login_required(login_url='persons:login')

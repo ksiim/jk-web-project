@@ -1,0 +1,54 @@
+.avatar-container {
+    position: relative;
+    display: inline-block;
+}
+.avatar-container input[type="file"] {
+    display: none;
+}
+.avatar-container img, .avatar-container .placeholder {
+    cursor: pointer;
+    border-radius: 1rem;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.avatar-container .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #ccc;
+}
+.background-thumbnail {
+    cursor: pointer;
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+}
+.background-thumbnail.selected {
+    border-color: #2F9286;
+}
+.background-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+    justify-items: center;
+}
+.background-grid img {
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+}
+.background-grid img.selected {
+    border-color: #2F9286;
+}
+.modal-body .background-grid img {
+    border-radius: 1rem;
+    max-width: 100%;
+    max-height: 100%;
+}

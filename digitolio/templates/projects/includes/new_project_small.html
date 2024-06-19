@@ -1,146 +1,145 @@
 {% load static %}
 <div class="project-card">
-    <img src="{% static project.get_first_tag_image %}" alt="Project Tag Image" class="card-img img-fluid">
-    <div class="project-card-body p-3">
-        <div class="project-header">
-            <div class="project-title-author">
-                <p class="p-0 m-0" style="color: #377275; font-size: 16px; font-weight: bold; margin-bottom: 0px;">{{ project.title|truncatechars:20 }}</p>
-                <a class="p-0 m-0 text-decoration-none" href="{% url 'persons:profile_view' project.author %}">
-                    {{ project.author.first_name }} {{ project.author.last_name }}
-                </a>
-            </div>
-            <a class='maximize text-decoration-none p-0 m-0' onclick="openModal({{ project.id }})">
-                <img src="{% static 'img/maximize.svg' %}" alt="Expand" class="p-0 m-0 expand-icon">
-            </a>
-        </div>
-        <div style="display: flex; justify-content: space-between;">
-            <div class="tags-container">
-                {% for tag in project.tags.all|slice:":2" %}
-                    <span class="tag-badge">#{{ tag.name }}</span>
-                {% endfor %}
-            </div>
-            <div class="rating-container">
-                <p style="color: #377275; font-size: 12px; font-weight: regular;">
-                    {% if project.grade %}
-                    {{project.grade}} б.
-                    {% else %}
-                    Нет
-                    {% endif %}
-                </p>
-            </div>
-        </div>
-    </div>
+	<img src="{% static project.get_first_tag_image %}" alt="Project Tag Image" class="card-img img-fluid">
+	<div class="project-card-body p-3">
+		<div class="project-header">
+			<div class="project-title-author">
+				<p class="p-0 m-0" style="color: #377275; font-size: 16px; font-weight: bold; margin-bottom: 0px;">{{ project.title|truncatechars:18 }}</p>
+				<a class="p-0 m-0 text-decoration-none" href="{% url 'persons:profile_view' project.author %}">
+					{{ project.author.first_name }} {{ project.author.last_name }}
+				</a>
+			</div>
+			<a class='maximize text-decoration-none p-0 m-0' onclick="openModal({{ project.id }})">
+				<img src="{% static 'img/maximize.svg' %}" alt="Expand" class="p-0 m-0 expand-icon">
+			</a>
+		</div>
+		<div style="display: flex; justify-content: space-between;">
+			<div class="tags-container">
+				{% for tag in project.tags.all|slice:":2" %}
+				<span class="tag-badge">#{{ tag.name }}</span>
+				{% endfor %}
+			</div>
+			<div class="rating-container">
+				<p style="color: #377275; font-size: 12px; font-weight: regular;">
+					{% if project.grade %}
+					{{project.grade}} б.
+					{% else %}
+					Нет
+					{% endif %}
+				</p>
+			</div>
+		</div>
+	</div>
 </div>
 
-
 <div id="myModal-{{project.id}}" data-project-id="{{project.id}}" class="modal">
-    <div class="modal-content">
-        <div class="background-image" id="modal-background-image-{{project.id}}">
-            <div class="top-right-images">
-                <a onclick="closeModal({{project.id}})" style="cursor: pointer;">
-                    <div class="circle">
-                        <img src="{% static 'img/close-circle.svg' %}" alt="Close" width="26px" height="26px">
-                    </div>
-                </a>
-                <a id="modal-project-detail-{{project.id}}">
-                    <div class="circle">
-                        <img src="{% static 'img/export.svg' %}" alt="Экспорт" width="24px" height="24px">
-                    </div>
-                </a>
-            </div>
-            <img id="modal-avatar-{{project.id}}" src="" alt="Аватар" class="avatar" style="display: none;">
-            <div class="project-avatar-placeholder" id="modal-placeholder-{{project.id}}" style="display: none;">
-                Нет фотографии
-            </div>
-            <div class="author-details" id="modal-author-details-{{project.id}}">
-                <a id="modal-author-link-{{project.id}}">
-                    <h3 id="modal-author-name-{{project.id}}" class="m-0 p-0" style="font-size: 20px;"></h3>
-                    <p id="modal-author-username-{{project.id}}" class="m-0 p-0"></p>
-                </a>
-            </div>
-        </div>
-        <div class="project-details">
-            <div class="text-center mb-4">
-                <h2 id="modal-title-{{project.id}}" style="font-size: 20px;"></h2>
-            </div>
-            <div class="description" id="modal-description-{{project.id}}"></div>
-            <div class="row mt-4">
-                <div class="col-md-9">
-                    <p class="m-0" id="modal-programming-language-{{project.id}}"></p>
-                    <p class="m-0" id="modal-date-added-{{project.id}}"></p>
-                    <div class="mt-2" id="modal-tags-container-{{project.id}}"></div>
-                </div>
-                <div class="col-md-3 d-flex justify-content-center align-items-center">
-                    <span id="modal-rating-{{project.id}}"></span>
-                </div>
-            </div>
-            <div class="mt-2">
-                <span>Ссылка на GitHub:</span>
-                <a id="modal-link-on-code-{{project.id}}" class="link_on_code"></a>
-            </div>
-        </div>
-    </div>
+	<div class="modal-content">
+		<div class="background-image" id="modal-background-image-{{project.id}}">
+			<div class="top-right-images">
+				<a onclick="closeModal({{project.id}})" style="cursor: pointer;">
+					<div class="circle">
+						<img src="{% static 'img/close-circle.svg' %}" alt="Close" width="26px" height="26px">
+					</div>
+				</a>
+				<a id="modal-project-detail-{{project.id}}">
+					<div class="circle">
+						<img src="{% static 'img/export.svg' %}" alt="Экспорт" width="24px" height="24px">
+					</div>
+				</a>
+			</div>
+			<img id="modal-avatar-{{project.id}}" src="" alt="Аватар" class="avatar" style="display: none;">
+			<div class="project-avatar-placeholder" id="modal-placeholder-{{project.id}}" style="display: none;">
+				Нет фотографии
+			</div>
+			<div class="author-details" id="modal-author-details-{{project.id}}">
+				<a id="modal-author-link-{{project.id}}">
+					<h3 id="modal-author-name-{{project.id}}" class="m-0 p-0" style="font-size: 20px;"></h3>
+					<p id="modal-author-username-{{project.id}}" class="m-0 p-0"></p>
+				</a>
+			</div>
+		</div>
+		<div class="project-details">
+			<div class="text-center mb-4">
+				<h2 id="modal-title-{{project.id}}" style="font-size: 20px;"></h2>
+			</div>
+			<div class="description" id="modal-description-{{project.id}}"></div>
+			<div class="row mt-4">
+				<div class="col-md-9">
+					<p class="m-0" id="modal-programming-language-{{project.id}}"></p>
+					<p class="m-0" id="modal-date-added-{{project.id}}"></p>
+					<div class="mt-2" id="modal-tags-container-{{project.id}}"></div>
+				</div>
+				<div class="col-md-3 d-flex justify-content-center align-items-center">
+					<span id="modal-rating-{{project.id}}"></span>
+				</div>
+			</div>
+			<div class="mt-2">
+				<span>Ссылка на GitHub:</span>
+				<a id="modal-link-on-code-{{project.id}}" class="link_on_code"></a>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script>
-        function openModal(projectId) {
-            var modal = document.getElementById("myModal-" + projectId);
-            event.preventDefault();
-            fetch('/project_data/' + projectId)
-                .then(response => response.json())
-                .then(project => {
-                    document.getElementById('modal-title-' + projectId).textContent = project.title.length > 40 ? project.title.slice(0, 55) + '...' : project.title;
-                    document.getElementById('modal-description-' + projectId).textContent = project.description.length > 430 ? project.description.slice(0, 430) + '...' : project.description;
-                    document.getElementById('modal-programming-language-' + projectId).textContent = 'Язык программирования: ' + project.programming_language;
-                    document.getElementById('modal-date-added-' + projectId).textContent = 'Дата добавления: ' + project.created_at;
-                    console.log(project.grade);
-                    document.getElementById('modal-rating-' + projectId).textContent = project.grade ? project.grade + ' б.' : 'Нет оценки';
-                    document.getElementById('modal-link-on-code-' + projectId).href = project.link_on_code;
-                    document.getElementById('modal-link-on-code-' + projectId).textContent = project.link_on_code;
-                    
-                    if (project.author_avatar) {
-                        document.getElementById('modal-avatar-' + projectId).src = project.author_avatar;
-                        document.getElementById('modal-avatar-' + projectId).style.display = 'block';
-                        document.getElementById('modal-placeholder-' + projectId).style.display = 'none';
-                    } else {
-                        document.getElementById('modal-avatar-' + projectId).style.display = 'none';
-                        document.getElementById('modal-placeholder-' + projectId).style.display = 'flex';
-                    }
-                    
-                    document.getElementById('modal-author-name-' + projectId).textContent = project.author_full_name;
-                    document.getElementById('modal-author-username-' + projectId).textContent = project.author_username;
-                    document.getElementById('modal-author-link-' + projectId).href = '/persons/' + project.author_username;
-                    document.getElementById('modal-project-detail-' + projectId).href = '/project/' + project.id;
+	function openModal(projectId) {
+		var modal = document.getElementById("myModal-" + projectId);
+		event.preventDefault();
+		fetch('/project_data/' + projectId)
+			.then(response => response.json())
+			.then(project => {
+				document.getElementById('modal-title-' + projectId).textContent = project.title.length > 40 ? project.title.slice(0, 55) + '...' : project.title;
+				document.getElementById('modal-description-' + projectId).textContent = project.description.length > 430 ? project.description.slice(0, 430) + '...' : project.description;
+				document.getElementById('modal-programming-language-' + projectId).textContent = 'Язык программирования: ' + project.programming_language;
+				document.getElementById('modal-date-added-' + projectId).textContent = 'Дата добавления: ' + project.created_at;
+				console.log(project.grade);
+				document.getElementById('modal-rating-' + projectId).textContent = project.grade ? project.grade + ' б.' : 'Нет оценки';
+				document.getElementById('modal-link-on-code-' + projectId).href = project.link_on_code;
+				document.getElementById('modal-link-on-code-' + projectId).textContent = project.link_on_code;
 
-                    let tagsContainer = document.getElementById('modal-tags-container-' + projectId);
-                    tagsContainer.innerHTML = '';
-                    project.tags.forEach(tag => {
-                        let tagBadge = document.createElement('span');
-                        tagBadge.className = 'tag-badge';
-                        tagBadge.textContent = '#' + tag;
-                        tagsContainer.appendChild(tagBadge);
-                    });
+				if (project.author_avatar) {
+					document.getElementById('modal-avatar-' + projectId).src = project.author_avatar;
+					document.getElementById('modal-avatar-' + projectId).style.display = 'block';
+					document.getElementById('modal-placeholder-' + projectId).style.display = 'none';
+				} else {
+					document.getElementById('modal-avatar-' + projectId).style.display = 'none';
+					document.getElementById('modal-placeholder-' + projectId).style.display = 'flex';
+				}
 
-                    let backgroundImageUrl = "{% static 'img/backgrounds/' %}" + project.author_profile_background;
-                    document.getElementById('modal-background-image-' + projectId).style.backgroundImage = 'url(' + backgroundImageUrl + ')';
-                });
+				document.getElementById('modal-author-name-' + projectId).textContent = project.author_full_name;
+				document.getElementById('modal-author-username-' + projectId).textContent = project.author_username;
+				document.getElementById('modal-author-link-' + projectId).href = '/persons/' + project.author_username;
+				document.getElementById('modal-project-detail-' + projectId).href = '/project/' + project.id;
 
-            modal.style.display = "block";
-            document.body.style.overflow = 'hidden';
-        }
+				let tagsContainer = document.getElementById('modal-tags-container-' + projectId);
+				tagsContainer.innerHTML = '';
+				project.tags.forEach(tag => {
+					let tagBadge = document.createElement('span');
+					tagBadge.className = 'tag-badge';
+					tagBadge.textContent = '#' + tag;
+					tagsContainer.appendChild(tagBadge);
+				});
 
-        function closeModal(projectId) {
-            var modal = document.getElementById("myModal-" + projectId);
-            modal.style.display = "none";
-            document.body.style.overflow = 'auto';
-        }
+				let backgroundImageUrl = "{% static 'img/backgrounds/' %}" + project.author_profile_background;
+				document.getElementById('modal-background-image-' + projectId).style.backgroundImage = 'url(' + backgroundImageUrl + ')';
+			});
 
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                var projectId = event.target.dataset.projectId;
-                var modal = document.getElementById("myModal-" + projectId);
-                modal.style.display = "none";
-                document.body.style.overflow = 'auto';
-            }
-        }
+		modal.style.display = "block";
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeModal(projectId) {
+		var modal = document.getElementById("myModal-" + projectId);
+		modal.style.display = "none";
+		document.body.style.overflow = 'auto';
+	}
+
+	window.onclick = function (event) {
+		if (event.target.classList.contains('modal')) {
+			var projectId = event.target.dataset.projectId;
+			var modal = document.getElementById("myModal-" + projectId);
+			modal.style.display = "none";
+			document.body.style.overflow = 'auto';
+		}
+	}
 </script>

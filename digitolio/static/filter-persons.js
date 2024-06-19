@@ -6,14 +6,14 @@ let languageForm = document.getElementById('filter3');
 let usersContainer = document.querySelector('.container .p-4');
 
 function applyChanges() {
-    let usersArray = Array.from(usersContainer.querySelectorAll('.row row-cols-auto'));
-    console.log(usersArray);
+    let usersArray = Array.from(usersContainer.querySelectorAll('.row .row-cols-auto'));
     let group = groupForm.value;
     let language = languageForm.value;
 
     usersArray.forEach(function(item) {
         let itemGroup = item.getAttribute('data-group');
         let itemLanguage = item.getAttribute('data-language');
+        console.log(itemLanguage);
         if (language === 'Выберите язык' && group === 'Выберите группу') {
             item.classList.remove('hidden');
             item.style.display = 'flex';

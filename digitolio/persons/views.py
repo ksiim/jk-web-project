@@ -18,7 +18,7 @@ def persons(request):
     persons_projects_data = []
     for person in persons:
         if person.programming_language:
-            person.programming_language = person.programming_language.capitalize()
+            person.programming_language = person.programming_language.casefold()
         projects = person.projects.all()[:3]
         persons_projects_data.append({'person': person, 'projects': projects, 'groups': groups})
     return render(request, 'persons/persons.html', context={'persons_projects_data': persons_projects_data, 'groups': groups, 'languages': languages, 'languages_dict': dict(PROGRAMMING_LANGUAGES)})

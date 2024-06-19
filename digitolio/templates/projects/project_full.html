@@ -54,10 +54,24 @@
                             </div>
                             <div class="col-md-3 d-flex justify-content-center align-items-center">
                                 <span id="rating">
-                                    {% if project.grade %}
-                                    {{project.grade}} б.
+                                    {% if admin == True %}
+                                        <form class="align-items-center" style="display: grid;" method="post">
+                                            {% csrf_token %}
+                                            {% if project.grade %}
+                                                <input class="form-control w-100 rounded" type="number" name="grade" min="0" max="100" required placeholder="{{project.grade}} б.">
+                                            {% else %}
+                                                <input class="form-control w-100 rounded" type="number" name="grade" min="0" max="100" required placeholder="Нет оценки">
+                                            {% endif %}
+                                            <button type="submit" class="w-100 form-group d-inline-block rounded-pill mr-2 estimate-button btn m-1 d-flex align-items-center" style="background-color: #2F9286; box-shadow: 0px 4px 4px color(display-p3 0.129 0.494 0.451 / 0.15)); color: white;">
+                                                Оценить проект
+                                            </button>
+                                        </form>
                                     {% else %}
-                                    Нет оценки
+                                        {% if project.grade %}
+                                            {{project.grade}} б.
+                                        {% else %}
+                                            Нет оценки
+                                        {% endif %}
                                     {% endif %}
                                 </span>
                             </div>
@@ -66,15 +80,6 @@
                             <span>Ссылка на GitHub:</span>
                             <a class="link_on_code" href="{{ project.link_on_code }}">{{ project.link_on_code }}</a>
                         </div>
-                        {% if admin == True %}
-                            <form class="align-items-center" style="display: grid;" method="post">
-                                {% csrf_token %}
-                                <input class="form-control w-100 rounded" type="number" name="grade" min="0" max="100" required placeholder="Введите оценку (0-100)">
-                                <button type="submit" class="form-group d-inline-block rounded-pill mr-2 estimate-button btn m-1 d-flex align-items-center" style="background-color: #2F9286; box-shadow: 0px 4px 4px color(display-p3 0.129 0.494 0.451 / 0.15)); color: white;">
-                                    Оценить проект
-                                </button>
-                            </form>
-                        {% endif %}
                     </div>
                 </div>
             </div>

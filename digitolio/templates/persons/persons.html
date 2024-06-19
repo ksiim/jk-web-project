@@ -32,45 +32,49 @@
                 </div>
                 <div class="container p-4 mx-auto" style='background-color: #F6F6F6; border-radius: 1rem; box-shadow: 0px 4px 4px color(display-p3 0.467 0.776 0.757 / 0.15);'>
                     {% for data in persons_projects_data %}
-                    <div class="row row-cols-auto g-4 mb-4" data-language="{{data.person.programming_language}}" data-group="{{data.person.group}}"  data-year="{{data.person.year}}">
-                        <div class="col mb-3">
-                            <div class='user-card'>
-                                <div class="avatar-container d-flex justify-content-center">
-                                    {% if data.person.avatar %}
-                                        <img src="{{ data.person.avatar.url }}" alt="Аватар" class="user-avatar">
-                                    {% else %}
-                                        <div class="placeholder">
-                                            Нет фотографии
+                        {% for language in languages_dict.items %}
+                            {% if data.person.programming_language == language.0 %}
+                                <div class="row row-cols-auto g-4 mb-4" data-language="{{language.1}}" data-group="{{data.person.group}}"  data-year="{{data.person.year}}">
+                                    <div class="col mb-3">
+                                        <div class='user-card'>
+                                            <div class="avatar-container d-flex justify-content-center">
+                                                {% if data.person.avatar %}
+                                                    <img src="{{ data.person.avatar.url }}" alt="Аватар" class="user-avatar">
+                                                {% else %}
+                                                    <div class="placeholder">
+                                                        Нет фотографии
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="user-details">
+                                                <div class="main-info">
+                                                    <a class="text-decoration-none text-start" href="{% url 'persons:profile_view' data.person.username %}">
+                                                        <p class="m-0 text-start" style=" font-size: 20px;">{{ data.person.first_name }}
+                                                        <p class="m-0 text-start" style=" font-size: 20px;">{{ data.person.last_name }}</p>
+                                                        <p class="m-0 text-start">{{ data.person.username }}</p>
+                                                    </a>
+                                                </div>
+                                                <div class="additional-info">
+                                                    <div class="d-flex justify-content-between" style="border-bottom: 2px solid #2F9286;">
+                                                        <span class="m-0" style="color: #2F9286; font-size: 14px;">Группа</span>
+                                                        <span class="m-0" style="color: #2F9286; font-size: 14px;">{{ data.person.group }}</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span class="m-0" style="color: #2F9286; font-size: 14px;">Год обучения</span>
+                                                        <span class="m-0" style="color: #2F9286; font-size: 14px;">{{ data.person.year }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    {% endif %}
-                                </div>
-                                <div class="user-details">
-                                    <div class="main-info">
-                                        <a class="text-decoration-none text-start" href="{% url 'persons:profile_view' data.person.username %}">
-                                            <p class="m-0 text-start" style=" font-size: 20px;">{{ data.person.first_name }}
-                                            <p class="m-0 text-start" style=" font-size: 20px;">{{ data.person.last_name }}</p>
-                                            <p class="m-0 text-start">{{ data.person.username }}</p>
-                                        </a>
                                     </div>
-                                    <div class="additional-info">
-                                        <div class="d-flex justify-content-between" style="border-bottom: 2px solid #2F9286;">
-                                            <span class="m-0" style="color: #2F9286; font-size: 14px;">Группа</span>
-                                            <span class="m-0" style="color: #2F9286; font-size: 14px;">{{ data.person.group }}</span>
+                                    {% for project in data.projects %}
+                                        <div class="col">
+                                            {% include 'projects/includes/new_project_small.html' with project=project %}
                                         </div>
-                                        <div class="d-flex justify-content-between">
-                                            <span class="m-0" style="color: #2F9286; font-size: 14px;">Год обучения</span>
-                                            <span class="m-0" style="color: #2F9286; font-size: 14px;">{{ data.person.year }}</span>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
-                            </div>
-                        </div>
-                        {% for project in data.projects %}
-                        <div class="col">
-                            {% include 'projects/includes/new_project_small.html' with project=project %}
-                        </div>
+                            {% endif %}
                         {% endfor %}
-                    </div>
                     {% endfor %}
                 </div>
             </div>

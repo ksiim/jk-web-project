@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35ce1d9d-21d2-46f4-8f9e-5c5374868dc5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitolio/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/digitolio/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitolio/projects/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/digitolio/projects/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitolio/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/digitolio/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitolio/static/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/digitolio/static/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitolio/templates/includes/header_hero.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitolio/templates/includes/header_hero.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitolio/templates/projects/includes/new_project_small.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitolio/templates/projects/includes/new_project_small.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitolio/templates/projects/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitolio/templates/projects/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +67,7 @@
       <workItem from="1715797072363" duration="5000" />
       <workItem from="1716294741689" duration="24000" />
       <workItem from="1716481424633" duration="44000" />
+      <workItem from="1718476787987" duration="12000" />
     </task>
     <servers />
   </component>
